@@ -82,6 +82,7 @@ app.use('/', index);
 app.use("/facebook", authRoutes);
 // todo, ponle el middleware para restringir solo a usuarios loggeados
 app.use("/user", isAuth, protectedRoutes);
+app.use("/google", authRoutes);
 
 
 

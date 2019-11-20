@@ -3,6 +3,8 @@ require("dotenv").config();
 const passport = require("passport");
 const User = require("../models/User");
 const FacebookStrategy = require("passport-facebook");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+
 
 passport.use(
   new FacebookStrategy({
@@ -42,5 +44,21 @@ passport.deserializeUser((id, done) => {
     done(err, user);
   });
 });
+
+
+
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: "http://localhost:3000/google/callback",
+  passReqToCallback: true
+},
+function(accessToken, refreshToken, profile, cb) {
+  User.findOrCreate({ googleId: profile.id }, function (err, user) {
+    return cb(err, user);
+  });
+}
+));
+
 
 module.exports = passport;
