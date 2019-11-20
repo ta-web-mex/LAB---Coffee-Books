@@ -1,0 +1,52 @@
+<div class="row">
+  <br>
+  <form class="col s12" method="POST" action="/user/create">
+
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="idField" type="number" name="id">
+        <label for="idLabel">ID</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="name" type="text" name="name">
+        <label for="name">Name</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="description" type="text" name="description">
+        <label for="description">Description</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <select name="placeType">
+          <option value="" disabled selected>Choose your option</option>
+          <option value="Cafeteria">Cafeteria</option>
+          <option value="Libreria">Libreria</option>
+        </select>
+        <label>Place Type</label>
+      </div>
+      <div class="input-field col s6">
+        <div id='map'></div>
+      </div>
+
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="lng" type="text" name="location[coordinates][0]" hidden>
+        </div>
+        <div class="input-field col s6">
+          <input id="lat" type="text" name="location[coordinates][1]" hidden>
+        </div>
+        <div class="input-field col s6">
+          <input id="address" type="text" name="location[address]" hidden>
+        </div>
+      </div>
+    </div>
+    <button class="btn waves-effect waves-light red" type="submit">Update
+      <i class="material-icons right">send</i>
+    </button>
+  </form>
+</div>
