@@ -16,3 +16,40 @@ res.render("placeDetail", {
     coordinates: place.location.coordinates
 })
 }
+//delete
+exports.placeDelete = (req, res) => {
+    const { id } = req.params;
+    Place.findByIdAndDelete(id)
+    .then(() => res.redirect("/"))
+    .catch(err =>  console.log(err));
+  }
+
+
+
+  //update
+//   exports.placeEdit = (req, res) => {
+//     const { id } = req.params;
+//     Place.findById(id).then( place => {
+//       const config = {
+//         title: "Update product",
+//       action: `/placeDetail/${id}/edit`,
+//       button: "Update"
+//       };
+//       res.render("createGet", {config, place} );
+//     });
+//   };
+//   exports.placeEditPost = (req, res) => {
+//     const {id } = req.params;
+//     const { name, location } = req.body;
+//     Place.findByIdAndUpdate(
+//       id,
+//       {
+//         $set:  {name, location}
+//       },
+//       {
+//         new: true
+//       }
+//     )
+//     .then(()=> res.redirect(`/place/{place._id}`))
+//     .catch(err => console.log(err));
+//   }

@@ -10,40 +10,29 @@ exports.createPost = async (req,res, next) =>{
     res.redirect("/")
 }
 
-
-
-//
-//delete
-exports.placeDelete = (req, res) => {
-    const { id } = req.params;
-    Place.findByIdAndDelete(id)
-    .then(() => res.redirect("/feed"))
-    .catch(err =>  console.log(err));
-  }
-  //update
   exports.placeEdit = (req, res) => {
     const { id } = req.params;
     Place.findById(id).then( place => {
       const config = {
         title: "Update product",
-      action: `/placeDetial/${id}/edit`,
+      action: `/place/:id/edit`,
       button: "Update"
       };
-      res.render("newplace", {config, place} );
+      res.render("createGet", {config, place} );
     });
   };
   exports.placeEditPost = (req, res) => {
     const {id } = req.params;
-    const { name, location, author } = req.body;
+    const { name, location } = req.body;
     Place.findByIdAndUpdate(
       id,
       {
-        $set:  {name, location, author }
+        $set:  {name, location}
       },
       {
         new: true
       }
     )
-    .then(()=> res.redirect(`/place/:id`))
+    .then(()=> res.redirect(`/place/{place._id}`))
     .catch(err => console.log(err));
   }

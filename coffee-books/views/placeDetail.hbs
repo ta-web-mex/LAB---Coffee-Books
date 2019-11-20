@@ -1,11 +1,12 @@
 <h2>{{place.name}}</h2>
-<p>{{place.description}}</p>
+<p>{{place.author.name}}</p>
 <div id='map'></div>
 <p>By {{place.author.name}}</p>
 <a href="/">Go back</a>
 
-<a href="/movies/{{_id}}/edit">Upate</a>
-<a href="/movies/{{_id}}/delete">Delete</a>
+<a href="/place/{{place.id}}/edit">Upate</a>
+
+<a href="/place/{{place.id}}/delete">Delete</a>
 
 <script>
   console.log({{ coordinates }})
