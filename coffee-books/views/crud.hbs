@@ -1,0 +1,21 @@
+<h1>Places</h1>
+<section> 
+  <form action="" method="post">
+
+  </form>
+  <ul>
+  {{#each places as |place|}}
+  <li> 
+    <a href="/places/{{place.id}}" class="btn">{{place.name}}</a> 
+    <form action="/places/{{place.id}}/delete" method="POST">
+      <input type="text" hidden name="id" value="{{place.id}}">
+      <button type="submit">Delete</button>
+    </form>
+    <form action="/places/{{place.id}}/edit" method="POST">
+      <input type="text" hidden name="id" value="{{place.id}}">
+      <button type="submit">Edit</button>
+    </form>
+  </li>
+  {{/each}}
+  </ul>
+</section>

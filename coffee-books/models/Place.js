@@ -10,6 +10,10 @@ const placeSchema = new Schema(
     placeType: {
         type:String,
         enum:['coffee shop', 'bookstore']
+    },
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: "User"
     }
   },
   {
