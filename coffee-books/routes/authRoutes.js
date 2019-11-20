@@ -7,7 +7,7 @@ const passport = require("passport");
 router.get("/facebook", passport.authenticate("facebook"));
 
 router.get("/facebookCallback", passport.authenticate("facebook", {
-    successRedirect: "/user/create",
+    successRedirect: "/create",
     failureRedirect: "/login"
 }
     ));
@@ -18,7 +18,7 @@ router.get("/google", passport.authenticate("google",{
 }))
 
 router.get("/googleCallback", passport.authenticate("google", {
-    successRedirect: "/",
+    successRedirect: "/create",
     failureRedirect: "/login"
 }));
 
