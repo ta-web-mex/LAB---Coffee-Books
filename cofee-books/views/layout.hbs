@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+  <link href='https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
+  <link rel='stylesheet'
+    href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.0/mapbox-gl-geocoder.css'
+    type='text/css' />
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js'></script>
+  <script
+    src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.0/mapbox-gl-geocoder.min.js'></script>
+</head>
+<body>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjpq8cFn93xudv87O0UfnpEceZiFsdXZB2apRNaND0WajRy4r_&s" width="50" height="50">
+    </a>
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  {{#if logged}}
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href='/user/create'>
+        Add new place
+      </a>
+    </div>
+    <div class="navbar-end">
+  <div class="navbar-item">
+    <div class="buttons">
+        <a class="button is-primary" href = '/facebook/logout'>
+          <strong>Logout</strong>
+        <a class="button is-light" href = '/feed'>
+            <strong>See places</strong>
+          </a>
+        </a>
+      </div>
+      </div>
+    </div>
+  </div>
+    {{else}}
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary" href = '/facebook/login'>
+            <strong>Sign Up FB</strong>
+          </a>
+          <a class="button is-light" href = '/google/login'>
+            <strong>Sign Up Google</strong>
+          </a>
+         <a class="button is-light" href = '/feed'>
+            <strong>See places</strong>
+          </a>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+  
+</nav>
+
+  {{{body}}}
+
+  <script src="/javascripts/script.js"></script>
+</body>
+</html>
