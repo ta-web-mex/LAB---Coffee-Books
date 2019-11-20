@@ -21,7 +21,6 @@ router.post("/places/:id/delete", (req, res) => {
 
 router.get('/places/:id/edit', (req, res) => {
   const { id } = req.params;
-  console.log("Print!!!",id)
   Place.findById(id)
     .then((place) => {
       res.render('crud/edit', { place });
@@ -31,7 +30,7 @@ router.get('/places/:id/edit', (req, res) => {
 
 router.post('/places/:id/edit', (req, res) => {
   const { id } = req.params;
-  console.log("Print!!!",id)
+  console.log({...req.body})
   Place.findByIdAndUpdate(id, {	$set: {...req.body}}, { new: true })
     .then((place) => res.redirect(`/places/${place._id}/edit`))
     .catch((err) => console.log(err));
