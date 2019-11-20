@@ -13,14 +13,28 @@ router.get("/login",  (req, res) => {
 })
 
 router.post("/places/:id/delete", (req, res) => {
-  console.log("hola")
   const {id} = req.params
-  console.log(id)
   Place.findByIdAndDelete(id)
       .then(() => res.redirect("/"))
       .catch(err => console.log(err))
 })
 
+router.get('/places/:id/edit', (req, res) => {
+  const { id } = req.params;
+  console.log("Print!!!",id)
+  Place.findById(id)
+    .then((place) => {
+      res.render('crud/edit', { place });
+    })
+    .catch((err) => console.log(err));
+});
 
+router.post('/places/:id/edit', (req, res) => {
+  const { id } = req.params;
+  console.log("Print!!!",id)
+  Place.findByIdAndUpdate(id, {	$set: {...req.body}}, { new: true })
+    .then((place) => res.redirect(`/places/${place._id}/edit`))
+    .catch((err) => console.log(err));
+});
 
 module.exports = router;
