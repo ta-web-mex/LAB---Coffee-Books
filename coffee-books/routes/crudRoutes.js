@@ -15,11 +15,11 @@ router.post("/create" , async (req, res, next) => {
     const { id } = req.params;
     console.log(id)
     Place.findById(id)
-      .then((movie) => {
+      .then((place) => {
         const config = {
           action: `/places/${id}/edit`
         };
-        res.render('crud/edit', { config, movie });
+        res.render('crud/edit', { config, place });
       })
       .catch((err) => console.log(err));
   });
