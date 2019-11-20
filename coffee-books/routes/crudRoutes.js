@@ -11,6 +11,23 @@ router.post("/create" , async (req, res, next) => {
     res.redirect("/");
   });
 
-
+  router.get('/places/:id/edit', (req, res) => {
+    const { id } = req.params;
+    console.log(id)
+    Place.findById(id)
+      .then((movie) => {
+        const config = {
+          action: `/places/${id}/edit`
+        };
+        res.render('crud/edit', { config, movie });
+      })
+      .catch((err) => console.log(err));
+  });
+  router.post('/places/:id', (req, res) => {
+    const { id } = req.params;
+    Place.findByIdAndUpdate(id, {	$set: {...req.body}}, { new: true })
+      .then((place) => res.redirect(`/places/${place._id}`))
+      .catch((err) => console.log(err));
+  });
 
 module.exports = router

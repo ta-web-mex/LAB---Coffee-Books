@@ -1,0 +1,15 @@
+<h2>Edit a movie</h2>
+<form action="/places/{{place._id}}" method="POST">
+    <label for="name">Name</label>
+    <input type="text" name="name">
+    <label for="location">Location</label>
+    <input id="lng" type="text" name="location[coordinates][0]" placeholder="longitud">
+    <input id="lat" type="text" name="location[coordinates][1]"placeholder="latitud">
+    <label for="address">Address</label>
+    <input id="address" type="text" name="location.address" placeholder="address">
+    <select name="placeType" id="">
+        <option value="coffee shop">coffee shop</option>
+        <option value="bookstore">bookstore</option>
+    </select>
+    <input type="submit" label="submit">
+</form>

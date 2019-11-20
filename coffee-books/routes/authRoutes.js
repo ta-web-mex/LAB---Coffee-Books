@@ -28,13 +28,6 @@ router.get("/logout", (req, res, next) => {
     res.redirect("/");
   });
 
-router.post("/:id/delete", (req, res) => {
-  console.log("hola")
-  const {id} = req.params
-  console.log(id)
-  Place.findByIdAndDelete(id)
-      .then(() => res.redirect("/"))
-      .catch(err => console.log(err))
-})
+
 
 module.exports = router;

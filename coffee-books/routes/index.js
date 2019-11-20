@@ -12,7 +12,7 @@ router.get("/login",  (req, res) => {
   res.render("auth/login")
 })
 
-router.post("/:id/delete", (req, res) => {
+router.post("/places/:id/delete", (req, res) => {
   console.log("hola")
   const {id} = req.params
   console.log(id)
@@ -20,5 +20,7 @@ router.post("/:id/delete", (req, res) => {
       .then(() => res.redirect("/"))
       .catch(err => console.log(err))
 })
+
+
 
 module.exports = router;
