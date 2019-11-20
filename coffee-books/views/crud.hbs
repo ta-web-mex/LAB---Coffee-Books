@@ -6,7 +6,7 @@
   <ul>
   {{#each places as |place|}}
   <li> 
-    <a href="/places/{{place.id}}" class="btn">{{place.name}}</a> 
+    <a href="/place/{{place._id}}" class="btn">{{place.name}}</a> 
     <form action="/places/{{place.id}}/delete" method="POST">
       <input type="text" hidden name="id" value="{{place.id}}">
       <button type="submit">Delete</button>
