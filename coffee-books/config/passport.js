@@ -18,7 +18,9 @@ passport.use(
 			if (!user) {
 				const newUser = await User.create({
 					facebookId: profile.id,
-					name: profile.displayName
+					name: profile.displayName,
+					email: profile.value,
+					places: []
 				});
 				return cb(null, newUser);
 			} else {
@@ -47,11 +49,13 @@ passport.use(
 			callbackURL: 'http://localhost:3000/google/callback'
 		},
 		async (accessToken, refreshToken, profile, cb) => {
-			const user = await User.findOne({ googleId: profile.id });
+			const user = await User.findOne({ googleId: profile.name });
 			if (!user) {
 				const newUser = await User.create({
 					googleId: profile.id,
-					name: profile.displayName
+					name: profile.displayName,
+					email: profile.value,
+					places: []
 				});
 				return cb(null, newUser);
 			} else {
