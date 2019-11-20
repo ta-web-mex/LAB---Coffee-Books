@@ -1,0 +1,10 @@
+<h1>Places</h1>
+{{#each places as |place|}}
+    <div>
+        <h4>{{place.name}}</h4>
+        {{place.placeType}}
+        {{place.location.address}}
+        <a href="/user/edit">Edit</a>
+        <a href="/user/{{place._id}}/delete">Delete</a>
+    </div>
+{{/each}}

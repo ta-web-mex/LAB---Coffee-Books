@@ -1,0 +1,39 @@
+<h1>Create</h1>
+<form action="/user/create" method="POST">
+
+    <label for="name">Name</label>
+    <input type="text" name="name">
+    <label for="location">Location</label>
+    <input id="lng" type="text" name="location[coordinates][0]" placeholder="longitud">
+    <input id="lat" type="text" name="location[coordinates][1]"placeholder="latitud">
+    <label for="address">Address</label>
+    <input id="address" type="text" name="location.address" placeholder="address">
+    <select name="placeType" id="">
+        <option value="coffee shop">coffee shop</option>
+        <option value="bookstore">bookstore</option>
+    </select>
+    <input type="submit" label="submit">
+</form>
+
+<div id='map'></div>
+
+
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoiZGl1cml2aiIsImEiOiJjanAxdjA2cTQwMGp1M2tvYzZmZGp3bWc3In0.4cZEyLkU2ikqx_wb4A1z8A';
+  const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11'
+  });
+  const geoCoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken
+  })
+  map.addControl(geoCoder)
+  geoCoder.on('results', (results) => {
+    document.querySelector('#address').value = results.features[0].place_name
+    document.querySelector('#lat').value = results.features[0].center[1];
+    document.querySelector('#lng').value = results.features[0].center[0];
+  });
+</script>
+ 
+
+
