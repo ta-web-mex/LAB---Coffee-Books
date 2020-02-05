@@ -8,7 +8,9 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-
+const session = require("express-session")
+const flash=require('connect-flash')
+const {isAuthenticated,checkRole}=require("./middlewares")
 
 mongoose
   .connect('mongodb://localhost/coffee-books', {useNewUrlParser: true})
@@ -29,6 +31,15 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(flash())
+app.use(
+  session({
+    secret:process.env.SECRET,
+    resave:false,
+    saveUninitialized:true
+  })
+
+)
 
 app.use(passport.initialize())
 app.use(passport.session())

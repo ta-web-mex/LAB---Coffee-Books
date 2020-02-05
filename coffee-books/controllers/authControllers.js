@@ -20,3 +20,8 @@ if(onDB===true){
 exports.loginView=(req,res,next)=>{
   res.render('auth/login')
 }
+
+exports.logout=(req,res,next)=>{
+  req.logout();
+  res.redirect("/")
+}
