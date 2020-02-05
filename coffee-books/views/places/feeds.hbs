@@ -1,0 +1,16 @@
+<h2>Places</h2>
+<a href="/places/create">Agregar lugar</a>
+<div class="row">
+  {{#each places}}
+    <div class="card col-4 m-1">
+      <div class="card-body">
+        <h5 class="card-title"><b>{{this.name}}</b></h5>
+        <p class="card-text">{{this.location.address}}</p>
+        {{#if this.auth}}
+        <p>{{this.auth}}</p>
+        <a href="/places/delete/{{this._id}}" class="btn btn-primary">Delete</a>
+        {{/if}}
+      </div>
+    </div>
+  {{/each}}
+</div>

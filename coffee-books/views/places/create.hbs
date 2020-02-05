@@ -1,0 +1,14 @@
+<h2>Crear</h2>
+<form action="/places/create" method="POST">
+  <input type="text" placeholder="Nombre" name="name">
+  <input type="text" placeholder="Direccion" name="address" hidden>
+  <input type="text" name="lat" hidden>
+  <input type="text" name="lng" hidden>
+  <select name="placeType" id="">
+    <option value="coffee shop">coffee shop</option>
+    <option value="bookstore">bookstore</option>
+  </select>
+<div id="map" style="width: 100vw; height: 250px;"></div>
+  <input type="submit" value="Guardar">
+</form>
+<script src="/javascript/script"></script>
