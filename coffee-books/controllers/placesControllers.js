@@ -1,15 +1,16 @@
 const Places = require("../models/places")
 
-
+/*
 exports.createPlaceView=(req,res,next)=>{
   res.render("folder/create")
+}*/
+
+exports.createPlaceView=(req,res,next)=>{
+  const options=['coffee shop','bookstore']
+  res.render("folder/create",{options})
 }
 
-exports.placesView=(req,res,next)=>{
-  res.render("folder/places")
-}
-
-
+/*
 // R in CRUD
 exports.getPlaces = async(req, res) =>{
   const places = await Places.find().populate("places")
@@ -29,8 +30,4 @@ exports.createPlace = async (req, res) =>{
 exports.updatePlacesView = async (req, res) => {
   const Places = await Places.find.ById(req.params.placesid)
   res.render("update-places")
-
-
-
-
-}
+}*/

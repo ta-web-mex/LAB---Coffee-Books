@@ -3,7 +3,7 @@ const router  = express.Router();
 const passport = require("../config/passport")
 
 const {signup, signUpView, login, loginView, logout} = require("../controllers/authControllers")
-const {createPlaceView,placesView}=require("../controllers/placesControllers")
+const {createPlaceView,placesView,placePost}=require("../controllers/placesControllers")
 const {isAuthenticated,checkRole}=require("../middlewares")
 /* GET home page */
 router.get('/', (req, res, next) => {
@@ -27,12 +27,13 @@ router.get('/auth/facebook', passport.authenticate('facebook'));
 
 
 
-
-  router.get('/create',isAuthenticated,createPlaceView)
+//router.get('/create',isAuthenticated,createPlaceView)
+  router.get('/create',createPlaceView)
 
   router.get("/logout",logout)
   
   
-  router.get("/feeds",placesView)
+  //router.get("/create",placesView)
+  //router.post("/feeds",placePost)
 
 module.exports = router;
