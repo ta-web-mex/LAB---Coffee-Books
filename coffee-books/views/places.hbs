@@ -1,0 +1,13 @@
+{{#each places as |place|}}
+<div class="card" style="width: 360px; margin: 10px;">
+  <div class="card-content">
+    <p class="title">
+      {{place.name}}
+    </p>
+    <p class="subtitle">
+      {{place.location.address}}
+    </p>
+    <a href="/delete/{{_id}}">Delete</a>
+  </div>
+</div>
+{{/each}}

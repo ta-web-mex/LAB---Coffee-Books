@@ -10,7 +10,7 @@ const logger       = require('morgan');
 const path         = require('path');
 const session = require('express-session');
 const passport = require('./config/passport');
-//const {isAuthenticated} = require('./middlewares');
+const {isAuthenticated} = require('./middlewares/index');
 
 mongoose
   .connect('mongodb://localhost/coffee-books', {useNewUrlParser: true,useUnifiedTopology: true})
@@ -66,7 +66,7 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index');
 app.use('/', index);
-app.use('/places',require('./routes/placeRoutes'))
+app.use('/',isAuthenticated,require('./routes/placeRoutes'))
 
 
 module.exports = app;

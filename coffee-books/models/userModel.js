@@ -16,7 +16,7 @@ const userSchema = new Schema({
     },
     places:{
         type: [Schema.Types.ObjectId],
-        ref: 'Places'
+        ref: 'Place'
     }
 });
 
