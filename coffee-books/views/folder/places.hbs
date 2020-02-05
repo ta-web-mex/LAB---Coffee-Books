@@ -1,5 +1,29 @@
-<h1>AQUI VAN LOS LUGARES CREADOS</h1>
-<h1>Cualquiera tiene acceso a esta ruta</h1>
-<h1>Disfruta de esta pagina en blanco c:</h1>
+<section class="home__section">
+  {{#each places as |place|}}
+  
+
+<div class="card" style="width: 360px; margin: 10px;">
+  <div class="card-content">
+    <p class="title">
+      {{name}}
+    </p>
+    <p class="subtitle">
+      {{author}}
+    </p>
+  </div>
+  <footer class="card-footer">
+    <p class="card-footer-item">
+      <span>
+        <a href="/places/{{_id}}">View More</a>
+      </span>
+    </p>
+  </footer>
+</div>
+
+
+
+  {{/each}}
+</section>
 <br><br>
 <button onclick="location.href='/'">Home</button> 
+

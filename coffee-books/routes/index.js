@@ -7,6 +7,7 @@ const {createPlaceView,placesView,placePost}=require("../controllers/placesContr
 const {isAuthenticated,checkRole}=require("../middlewares")
 /* GET home page */
 router.get('/', (req, res, next) => {
+
   res.render('index');
 });
 router.get('/signup',signUpView);
@@ -27,13 +28,14 @@ router.get('/auth/facebook', passport.authenticate('facebook'));
 
 
 
-//router.get('/create',isAuthenticated,createPlaceView)
-  router.get('/create',createPlaceView)
+router.get('/create',isAuthenticated,createPlaceView)
+ // router.get('/create',createPlaceView)
 
   router.get("/logout",logout)
   
   
   //router.get("/create",placesView)
-  //router.post("/feeds",placePost)
+  router.post("/create",placePost)
+  router.get("/places",placesView)
 
 module.exports = router;

@@ -10,6 +10,25 @@ exports.createPlaceView=(req,res,next)=>{
   res.render("folder/create",{options})
 }
 
+exports.placePost = async (req, res) => {
+  const { name, address, latitude, longitude, placeType } = req.body
+  const newPlace = {
+    name,
+    location: {
+      address,
+      coordinates: [longitude, latitude]
+    },
+    placeType
+  }
+  const { _id } = await Places.create(newPlace)
+  res.redirect(`/places`)
+}
+
+exports.placesView=async (req,res)=>{
+  const places=await Places.find().sort({createdAt:-1})
+  res.render("folder/places",{places})
+}
+
 /*
 // R in CRUD
 exports.getPlaces = async(req, res) =>{

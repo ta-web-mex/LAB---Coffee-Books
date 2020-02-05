@@ -13,7 +13,7 @@ const flash=require('connect-flash')
 const {isAuthenticated,checkRole}=require("./middlewares")
 
 mongoose
-  .connect('mongodb://localhost/coffee-books', {useNewUrlParser: true})
+  .connect('mongodb://localhost/coffee-books', {useNewUrlParser: true, useUnifiedTopology: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -29,7 +29,7 @@ const app = express();
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false  }));
 app.use(cookieParser());
 app.use(flash())
 app.use(
