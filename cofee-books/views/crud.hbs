@@ -1,0 +1,8 @@
+<h2>All Places</h2>
+<a href="/create">Create</a>
+
+<ul>
+{{#each places}}
+    <li>{{this.name}}, {{this.placeType}}</li><a href="/update">Edit</a><a href="/delete">Delete</a>
+{{/each}}
+</ul>

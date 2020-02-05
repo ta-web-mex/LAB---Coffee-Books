@@ -1,0 +1,10 @@
+<h2>Feeds</h2>
+<ul>
+    {{#each places}}
+    <li>
+        <h5>{{this.name}}</h5>
+        <p>{{this.location.adress}}</p>
+        <p>{{this.placeType}}</p>
+    </li>
+    {{/each}}
+</ul>
