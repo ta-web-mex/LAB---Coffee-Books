@@ -1,0 +1,17 @@
+<h1>login</h1>
+
+<form action="/signup" method="post">
+    <input type="text" name="name" id="name" placeholder="Name">
+    <br><br>
+    <input type="text" name="email" id="email" placeholder="email">
+    <br><br>
+    <input type="password" name="password" id="password" placeholder="Password">
+    <br><br>
+    <button>Create Acount</button>
+
+    {{#if message}}
+        {{message}}
+    {{/if}}
+</form>
+
+<a href="/auth/google"> Google </a>
