@@ -1,0 +1,17 @@
+<section class="home__section">
+  {{#each places as |place|}}
+  <div class="card" style="width: 360px; margin: 10px;">
+  <div class="card-content">
+    <p class="title">
+      {{name}}
+    </p>
+  <footer class="card-footer">
+    <p class="card-footer-item">
+      <span>
+        <a href="/places/{{_id}}">View More</a>
+      </span>
+    </p>
+  </footer>
+</div>
+  {{/each}}
+</section>
