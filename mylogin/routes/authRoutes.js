@@ -1,20 +1,35 @@
 const router = require('express').Router()
 const passport = require("../config/passport")
 
-// const passport = require('../config/passport')
-const {signupView, loginView, profileView, createEvent,logout, createEventPost, placeGet} = require('../controllers/authControllers')
+const isAuthenticated = (req, res, next) =>{
+  if(req.isAuthenticated()) {
+    console.log("Hopooodasdasdasd");
+    
+      console.log(req.isAuthenticated())
+    next()
+  } else{
+    res.redirect('/login')
+  }
+}
+
+const {signupView,
+       loginView,
+       profileView, 
+       createEvent,logout,
+       createEventPost,
+       placeGet} = 
+       require('../controllers/authControllers')
 
 
 
 router.get('/signup', signupView)
 router.get('/login', loginView)
 router.get('/privates/profile', profileView )
-router.get('/privates/createEvent',createEvent )
+router.get('/privates/createEvent',isAuthenticated,createEvent )
 // router.post('/signup', signupPost)
 
 // Google auth Routes
-router.get(
-  "/auth/google",
+router.get("/auth/google",
   passport.authenticate("google", {
     scope: [
       "https://www.googleapis.com/auth/userinfo.profile",
@@ -31,6 +46,6 @@ router.get(
 );
 
 router.get("/logout", logout);
-router.post('/privates/createEvent',createEventPost)
+router.post('/privates/createEvent',isAuthenticated,createEventPost)
 router.get('/place/:id', placeGet)
 module.exports = router;

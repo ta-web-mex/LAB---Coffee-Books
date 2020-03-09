@@ -1,8 +1,6 @@
 const User = require('../models/User')
 const Place = require('../models/places')
 
-
-
 exports.signupView = (req,res)=>{
   const config  = {
     register: true,
@@ -12,17 +10,19 @@ exports.signupView = (req,res)=>{
 }
 
 exports.loginView = (req, res)=>{
-
-
-  const config  = {
-    register: false,
-    action: 'login'
-  }
+    const config  = {
+      register: false,
+      action: 'login'
+    }
 res.render('auth/signup', config)
 }
 
 
 exports.profileView = (req,res) => {
+  console.log( `Session:abjdlasjkbhdasj,lbhd ${req}`);
+  console.log( `User: ${req.user}`);
+  
+  
   res.render('privates/profile')
 }
 
@@ -39,10 +39,8 @@ exports.createEventPost = async (req, res) => {
       coordinates: [longitude, latitude]
     }
   }
-  console.log(newPlace)
   const { _id } = await Place.create(newPlace)
   res.redirect("privates/profile")
-// exports.signupPost = async (req, res) =>{
 
  }
 
@@ -52,8 +50,10 @@ exports.placeGet = async (req, res) => {
   const place = await Place.findById(id)
   res.render('privates/profile', place)
 }
-exports.logout = (req, res) => {
-  req.logout();
-  console.log(req.logout());
-   res.redirect("/login");
+exports.logout = async (req, res) => {
+    console.log(req.session);
+    await req.session.destroy()
+
+    req.logOut();
+    res.redirect("/");
 }
