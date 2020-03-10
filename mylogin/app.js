@@ -13,7 +13,7 @@ const passport = require('./config/passport');
 const flash        = require("connect-flash");
 
 mongoose
-  .connect('mongodb://localhost/mylogin', {useNewUrlParser: true,useUnifiedTopology: true})
+  .connect('mongodb://localhost/placesMapbox', {useNewUrlParser: true,useUnifiedTopology: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })

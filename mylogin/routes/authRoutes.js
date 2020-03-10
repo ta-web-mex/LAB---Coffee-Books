@@ -1,11 +1,8 @@
-const router = require('express').Router()
+const router = require('express').Router();
 const passport = require("../config/passport")
 
 const isAuthenticated = (req, res, next) =>{
   if(req.isAuthenticated()) {
-    console.log("Hopooodasdasdasd");
-    
-      console.log(req.isAuthenticated())
     next()
   } else{
     res.redirect('/login')
@@ -30,22 +27,22 @@ router.get('/privates/createEvent',isAuthenticated,createEvent )
 
 // Google auth Routes
 router.get("/auth/google",
-  passport.authenticate("google", {
-    scope: [
-      "https://www.googleapis.com/auth/userinfo.profile",
-      "https://www.googleapis.com/auth/userinfo.email"
-    ]
-  })
-);
-router.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    successRedirect: "/privates/profile",
-    failureRedirect: "/login"
-  })
+      passport.authenticate("google", {
+        scope: [
+          "https://www.googleapis.com/auth/userinfo.profile",
+          "https://www.googleapis.com/auth/userinfo.email"
+        ]
+      })
+    );
+    router.get(
+      "/auth/google/callback",
+      passport.authenticate("google", {
+        successRedirect: "/privates/profile",
+        failureRedirect: "/login"
+      })
 );
 
 router.get("/logout", logout);
-router.post('/privates/createEvent',isAuthenticated,createEventPost)
+router.post('/createEvent',isAuthenticated,createEventPost)
 router.get('/place/:id', placeGet)
 module.exports = router;

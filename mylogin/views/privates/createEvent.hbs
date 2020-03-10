@@ -1,13 +1,11 @@
-<form action="/createEventPost" method="POST">
+  <form action="/createEvent" method="POST">
   Name: <input type="text" name="name">
   Place type: <select name="placeType">
     <option value="cofee shop">Barberia</option>
-    <option value="bookstore">Cienma</option>
-    <option value="bookstore">Bar</option>
-    <option value="bookstore">Bar</option>
-    <option value="bookstore">Parque</option>
-    <option value="bookstore">Parque</option>
-    <option value="bookstore">Escuela</option>
+    <option value="Cinema">Cienma</option>
+    <option value="Bar">Bar</option>
+    <option value="Parq">Parque</option>
+    <option value="School">Escuela</option>
   </select>
     <button class="button">Create</button><br><br>
     <div id="mapCreate"></div>
@@ -29,7 +27,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoicmljYXJkb2xlZ28iLCJhIjoiY2s2ODJzM2NjMDBwZDNuc
 
 
 
-      
+
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
           const center = [position.coords.longitude, position.coords.latitude]

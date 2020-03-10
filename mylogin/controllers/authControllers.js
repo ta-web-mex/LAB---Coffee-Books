@@ -1,5 +1,6 @@
+const mongoose = require('mongoose')
 const User = require('../models/User')
-const Place = require('../models/places')
+const place = require('../models/places')
 
 exports.signupView = (req,res)=>{
   const config  = {
@@ -16,31 +17,36 @@ exports.loginView = (req, res)=>{
     }
 res.render('auth/signup', config)
 }
-
-
 exports.profileView = (req,res) => {
-  console.log( `Session:abjdlasjkbhdasj,lbhd ${req}`);
-  console.log( `User: ${req.user}`);
-  
-  
-  res.render('privates/profile')
+res.render('privates/profile')
 }
 
 exports.createEvent = (req,res,next) =>{
   res.render('privates/createEvent')
 }
-exports.createEventPost = async (req, res) => {
+exports.createEventPost =  (req, res) => {
+  console.log(place);
+  
   const { name, address, latitude, longitude, placeType } = req.body
+  console.log(req.user);
+  console.log(req.body);
+  
   const newPlace = {
     name,
     placeType,
     location: {
-      address,
+      address:address,
       coordinates: [longitude, latitude]
     }
   }
-  const { _id } = await Place.create(newPlace)
-  res.redirect("privates/profile")
+
+  console.log(newPlace);
+  
+    place.create(newPlace).then(res=>{
+    // console.log(res)
+    console.log('oñiashfdñajsdñouihjñuioh')
+  }).catch(err=>console.log(err))
+  res.redirect("privates/createEvent")
 
  }
 
@@ -51,9 +57,7 @@ exports.placeGet = async (req, res) => {
   res.render('privates/profile', place)
 }
 exports.logout = async (req, res) => {
-    console.log(req.session);
     await req.session.destroy()
-
-    req.logOut();
-    res.redirect("/");
+    await req.logout()
+     res.redirect("/")
 }
