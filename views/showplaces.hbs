@@ -1,0 +1,13 @@
+<h1>Places</h1>
+
+{{#each places}}
+<div><a href="/{{this._id}}">{{this.name}}</a></div>
+<form action="/showplaces/{{this._id}}/delete" method="POST">
+  <input type="submit" value="Delete">
+</form>
+<a href="/edit/{{this._id}}">Edit</a>
+{{/each}}
+<br>
+<br>
+<br>
+<a href="/addplace">Go Back</a>
