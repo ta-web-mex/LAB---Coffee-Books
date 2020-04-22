@@ -2,7 +2,7 @@ const Place = require('../models/Place')
 const passport = require('../config/passport')
 
 exports.placeView = async (req, res) => {
-  const place = await Place.find({}).sort({ name: 1 })
+  const place = await Place.find({}).sort({ createdAt: 1 })
   res.render('places/places', { place })
 }
 
@@ -16,17 +16,17 @@ exports.newPlace = (req, res) => {
 }
 
 exports.newPlaceProcess = async (req, res) => {
-  const { name, longitude, latitude, placesType } = req.body;
+  const { name, longitude, latitude, placesType } = req.body
   const location = {
-    type: "Point",
+    type: 'Point',
     coordinates: [longitude, latitude],
-  };
+  }
   await Place.create({
     name,
     location,
     placesType,
   })
-    res.redirect('/place')
+  res.redirect('/place')
 }
 
 exports.placeDelete = async (req, res) => {
@@ -48,5 +48,3 @@ exports.editPlacePost = async (req, res) => {
   await Place.findByIdAndUpdate(edit, { $set: { ...req.body } }, { new: true })
   res.redirect(`/place`)
 }
-
-

@@ -59,15 +59,15 @@ router.get('/auth/google/callback', loginGoogleCb)
 //////////////////////////////////////PLACES///////////////////////////////////////////
 
 //Crear
-router.get('/place/new', newPlace)
-router.post('/place/new', newPlaceProcess)
+router.get('/place/new', ensureLogin, newPlace)
+router.post('/place/new', ensureLogin, newPlaceProcess)
 //Read
-router.get('/place', placeView)
-router.get('/place/:id', placeDetail)
+router.get('/place', ensureLogin, placeView)
+router.get('/place/:id', ensureLogin, placeDetail)
 //Update
-router.get('/place/edit/:id', editPlaceGet)
-router.post('/place/edit/:id', editPlacePost)
+router.get('/place/edit/:id', ensureLogin, editPlaceGet)
+router.post('/place/edit/:id', ensureLogin, editPlacePost)
 //Delete
-router.get('/place/delete/:id', placeDelete)
+router.get('/place/delete/:id', ensureLogin, placeDelete)
 
 module.exports = router;
