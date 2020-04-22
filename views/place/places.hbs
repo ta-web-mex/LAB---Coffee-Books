@@ -1,0 +1,25 @@
+<h1>Places List</h1>
+
+{{#each place}}
+<a href="/place/{{_id}}">
+  <h2>{{name}}</h2>
+</a>
+<a href="/place/delete/{{_id}}">Delete</a>
+<a href="/place/edit/{{_id}}">Edit</a>
+{{/each}}
+
+<br>
+<br>
+<br>
+<br>
+
+<a href="/">
+  <button>
+    Home
+  </button>
+</a>
+<a href="/place/new">
+  <button>
+    New Place
+  </button>
+</a>

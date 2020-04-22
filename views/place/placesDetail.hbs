@@ -1,0 +1,26 @@
+<h1>{{name}}</h1>
+
+<div id="map"></div>
+
+<h2>[{{ location.coordinates }}]</h2>
+
+<h4>{{placesType}}</h4>
+
+
+<a href="/">Home</a>
+<a href="/place">List of Places</a>
+
+<script>
+  mapboxgl.accessToken =
+    'pk.eyJ1IjoiZWR1OTMiLCJhIjoiY2s5YXZibW54MDlxZTNncXJsZ3p2enk5NyJ9.ZhBMPsw3MAs2JdMvCTvUpQ';
+  const map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/mapbox/streets-v11",
+    zoom: 15,
+    center: [{{ location.coordinates }}]
+  });
+  new mapboxgl.Marker()
+    .setLngLat([{{ location.coordinates }}])
+    .addTo(map)
+    
+</script>
