@@ -1,0 +1,21 @@
+<form action="/signup" method="post">
+  <label for="email">email</label>
+  <input type="email" name="email">
+  <br><br>
+  <label for="password">password</label>
+  <input type="password" name="password">
+  <br><br>
+  <label for="verify">Verify</label>
+  <input type="password" name="verify">
+  <br><br>
+  <input type="submit" value="Sing up!">
+</form>
+
+<br><br>
+<a href="/loginFacebook">Sing up with facebook</a>
+<br><br>
+<a href="/login">Log in</a>
+
+{{#if err}}
+<h5>{{err}}</h5>
+{{/if }}

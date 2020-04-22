@@ -1,0 +1,15 @@
+<h1>Your Places</h1>
+<h4><a href="/addPlace">Add a Place to your log </a></h4>
+{{#each places}}
+<div>
+  <a href="/placeDetail/{{this._id}}"><b>{{this.name}}</b></a>
+  <div>
+    <form action="/placeEdit/{{this._id}}" method="get">
+      <button type="submit" id="submit">Edit</button>
+    </form>
+    <form action="/placeDelete/{{this._id}}" method="get">
+      <button type="submit" id="submit">Delete</button>
+    </form>
+  </div>
+</div>
+{{/each}}

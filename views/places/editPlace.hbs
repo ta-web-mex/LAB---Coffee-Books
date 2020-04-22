@@ -1,0 +1,23 @@
+
+<h2>Edit Place</h2>
+<form action="/placeEdit/{{_id}}" method="POST">
+  <input name="name" type="text" value="{{name}}">
+  <input name="coor" type="text" value="{{ location.coordinates }}">
+  <input name="placeType" list="placeType" placeholder="{{placesType}}">
+  <datalist id="placeType">
+    <option value="coffee shop" />
+      <option value="bookstore" />
+      </datalist>
+      <input type="submit" value="Edit Place">
+    </form>
+
+    <a href="/">
+      <button>
+        Home
+      </button>
+    </a>
+    <a href="/yourPlaces">
+      <button>
+        List of Places
+      </button>
+    </a>
