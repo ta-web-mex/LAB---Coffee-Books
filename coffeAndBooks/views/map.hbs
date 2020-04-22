@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Locator</title>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js"></script>
+<link
+  href="https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css"
+  rel="stylesheet"/>
+</head>
+<body>
+  <h3>Coffee and library locator</h3>
+    <div id="map" style="width: 1200px; height: 800px"></div>
+    <script>
+
+mapboxgl.accessToken = "pk.eyJ1IjoiZW1tYS1zb2xhbm8iLCJhIjoiY2s5YXllN29mMGF1ZDNtbXE1ZGpzemZoayJ9.7JvSbgVXAi_djFRFlWjQDQ";
+const map = new mapboxgl.Map({
+   container: "map",
+    style: "mapbox://styles/mapbox/streets-v11",
+    zoom: 3
+});
+    </script>
+</body>
+</html>
