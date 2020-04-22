@@ -1,0 +1,22 @@
+<h1>Add Place</h1>
+<!--  Mapbox GL Geocoder -->
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+
+<div id='map' style='width: 400px; height: 300px;'></div>
+
+<form action="/addPlace" method="post">
+  <input type="text" name="name" id="name" placeholder="name"><br>
+  <input name="placeType" list="placeType" placeholder="Place Type"> 
+    <datalist id="placeType"> 
+      <option value="coffee shop" /> 
+      <option value="bookstore" /> 
+    </datalist>  
+  <button type="submit" id="submit" >Add place</button>
+  <input type="text" name="longitude" id="longitude" hidden>
+  <input type="text" name="latitude" id="latitude" hidden>
+</form>
+
+<script src="/javascripts/addMap.js"></script>
