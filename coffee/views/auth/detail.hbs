@@ -1,0 +1,22 @@
+<h1>{{name}}</h1>
+
+<div id="map"></div>
+
+
+<a href="/">Regresar</a>
+
+<script>
+  mapboxgl.accessToken =
+    'pk.eyJ1IjoicGFraWxsb2VwIiwiYSI6ImNrOWF2YmtmNDI3cXgzaG1zeHFheGwwamMifQ.4Zcwn5wA8spNnbbmt-13ZA'
+
+  const map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/mapbox/streets-v11",
+    zoom: 15,
+    center: [{{ location.coordinates }}]
+  })
+
+  new mapboxgl.Marker()
+    .setLngLat([{{ location.coordinates }}])
+    .addTo(map)
+</script>
