@@ -1,0 +1,25 @@
+<h1>Add Place</h1>
+
+<div id="map"></div>
+
+<form action="/place/new" method="POST">
+  <input type="text" name="name" id="name" placeholder="name"><br>
+  <input name="placeType" list="placeType" placeholder="Place Type">
+  <datalist id="placeType">
+    <option value="coffee shop" />
+    <option value="bookstore" />
+  </datalist><br>
+  <button type="submit" id="submit" disabled>Add place</button>
+  {{!-- Procuren poner los inputs ocultos despues del boton de submit y que no sean de tipo numero --}}
+  <input type="text" name="longitude" id="longitude" hidden>
+  <input type="text" name="latitude" id="latitude" hidden>
+</form>
+
+<br>
+<br>
+<a href="/places">
+  <button>
+    Go Back
+  </button>
+</a>
+<script src="/javascripts/addMapsScript"></script>
