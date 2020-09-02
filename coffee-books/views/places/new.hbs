@@ -1,0 +1,16 @@
+<h1>Add a new place to our map</h1>
+<p>Remember to type all the options</p>
+<hr>
+<form action="places/new" method="POST">
+  <label for="name">Name</label>
+  <br>
+  <input required type="text" name="name">
+  <br>
+  <label for="placeType">Type:</label>
+  <select name="placeType" id="">
+    <option selected value="bookstore">Bookstore</option>
+    <option value="coffee-shop">Coffee-Shop</option>
+  </select>
+  <br>
+  <button type="submit">Create new place</button>
+</form>

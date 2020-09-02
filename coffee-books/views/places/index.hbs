@@ -1,0 +1,16 @@
+<h1>Places</h1>
+<p>Find all the coffee-shops and bookstores listed below</p>
+<hr>
+{{!-- MAPA CON MARCADORES DE LOS PLACES --}}
+<ul>
+  {{#each allplaces}}
+  <li>
+    <div>
+      <p>{{name}}</p>
+      <form action="/places/:${{_id}}/edit" method="POST"><button type="submit">Edit</button></form>
+      <form action="/places/:${{_id}}/delete" method="GET"><button type="submit">Delete</button></form>
+    </div>
+  </li>
+  {{/each}}
+</ul>
+<a href="/places/new">Add a new place</a>
