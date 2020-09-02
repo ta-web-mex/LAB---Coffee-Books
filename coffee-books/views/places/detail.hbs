@@ -1,0 +1,26 @@
+<h1>{{name}}</h1>
+<h2>{{placeType}}</h2>
+
+
+<a href="/places/editar/{{_id}}">Edit the detail</a>
+
+
+
+<br>
+<p>Delete...</p>
+<form action="/places/detail" method="POST">
+<label for="name">Place name for delete</label>
+<br>
+<input type="text" name="name">
+<br>
+<button type="submit">Delete...</button>
+</form>
+
+
+
+<a href="/places/home">Back</a>
+
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet"
+  href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css" />
+<script src="/javascripts/addPlace.js"></script>

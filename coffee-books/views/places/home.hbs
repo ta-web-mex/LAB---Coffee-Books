@@ -1,0 +1,21 @@
+<h1>MAP</h1>
+
+<div id="map" style="width: 100%; height: 400px"></div>
+<br>
+<h4>
+<p><a href="/places/create">Add New One</a></p>
+</h4>
+
+{{#each places}}
+<p>-{{name}}</p>
+<a href="/places/detail/{{_id}}">More detail</a>
+{{/each}}
+
+<script>
+  window.onload = () => {
+    {{#each places}}
+    new mapboxgl.Marker().setLngLat([{{location.coordinates}}]).addTo(map)
+    {{/each}}
+  }
+</script>
+
