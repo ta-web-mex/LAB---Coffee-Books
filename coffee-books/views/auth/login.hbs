@@ -1,0 +1,30 @@
+<h2>Login</h2>
+<div id="login">
+  {{#if error}}
+  <p style="color: red">{{error}}</p>
+  {{/if}}
+    <hr>
+    <form action="/auth/login" method="POST">
+        <div class="form-group">
+            <label for="input-email">Email</label>
+            <input class="form-control"required type="text" name="email" id="input-email" placeholder="Your Email" />
+        </div>
+        <div class="form-group">
+            <label for="input-password">Password</label>
+            <input class="form-control"required type="password" name="password" id="input-password" placeholder="********" />
+        </div>
+        <button type="submit" class="btn btn-primary">Log in</button>
+    </form>
+    <br>
+    <br>    
+    <p class="account-message">
+       Dont You have an account? Please <a href="/auth/signup">Sign up!</a>
+    <br> 
+    <br>
+
+    <p><a href="/auth/facebook"><img width="40%" src="https://scontent.frex1-1.fna.fbcdn.net/v/t39.2365-6/17639236_1785253958471956_282550797298827264_n.png?_nc_cat=105&_nc_sid=ad8a9d&_nc_ohc=vr8sWCqiQisAX_jE5FY&_nc_ht=scontent.frex1-1.fna&oh=ff5feab99010c777880b0341e3509950&oe=5F752F96" alt=""></a></p>
+    <p><a href="/auth/google"><img width="40%"  src="https://support.clever.com/hc/article_attachments/360054105332/google.png" alt=""></a></p>
+
+    </script>
+
+</div>

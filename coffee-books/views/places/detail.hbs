@@ -1,0 +1,32 @@
+<a class="btn btn-info" href="/">Return to Index</a>
+<br><br>
+<h2>Place  Details</h2>
+<hr>
+Name: <h4>{{name}}</h4>
+Description: <h4>{{description}}</h4>
+PlaceType: <h4>{{placeType}}</h4>
+Coordenates: <h4>{{location.coordinates}}</h4>
+
+
+<hr>    
+    <div id='map' style='width: 100%; height: 400px;'></div>
+<hr>
+
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css" />
+
+<script>
+
+    var prev_handler = window.onload;
+    window.onload = function () {
+        if (prev_handler) {
+            prev_handler();
+        }
+            
+      new mapboxgl.Marker().setLngLat([{{location.coordinates}}]).addTo(map)
+      
+        map.easeTo({center: [{{location.coordinates}}]});
+    
+    };
+
+</script>

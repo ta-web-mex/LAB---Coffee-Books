@@ -1,0 +1,71 @@
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+
+<div class="row">
+    {{#if isLogged}}    
+        <div class="col col-lg-2"><a class="btn btn-primary" href="/auth/logout" role="button">Log Out</a></div>
+    {{else}}    
+        <div class="col col-lg-2"><a class="btn btn-primary" href="/auth/signup" role="button">Sign Up</a></div>
+        <div class="col col-lg-2"><a class="btn btn-primary" href="/auth/login" role="button">Login</a></div>
+    {{/if}}
+</div>
+<br>
+<br>
+<hr>
+<br>
+{{#if isLogged}} 
+    <div class="row">
+        <div class="col col-lg-4"><a class="btn btn-primary" href="/places/add" role="button">Agregar Lugar</a></div>
+    </div>
+{{/if}}
+<br>
+<hr>
+<div class="row">
+    <div class="col col-lg-12">
+        <div id="map" style="width: 100%; height: 400px"></div>
+    </div>
+</div>
+<br>
+<hr>
+<br>
+<div class="row">
+    <div class="col col-lg-12">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">Lugar</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Detalle</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{#each places}}
+            <tr>
+                <th scope="row">{{name}}</th>
+                <td>{{placeType}}</td>
+                
+                {{#if ../isLogged}}
+                <td><a class="btn btn-primary" href="/places/detail/{{_id}}" role="button">Detalle Lugar</a></td>
+                <td><a class="btn btn-primary" href="/places/update/{{_id}}" role="button">Editar Lugar</a></td>
+                <td><a class="btn btn-danger" href="/places/delete/{{_id}}" role="button">Borrar Lugar</a></td>    
+                {{else}} 
+                <td><a class="btn btn-primary disabled" disabled href="" role="button">Detalle Lugar</a></td>
+                <td><a class="btn btn-primary disabled" disabled href="" role="button">Editar Lugar</a></td>
+                <td><a class="btn btn-danger disabled" disabled href="" role="button">Borrar Lugar</a></td>     
+                {{/if}}
+            </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+  window.onload = () => {
+    {{#each places}}
+        new mapboxgl.Marker().setLngLat([{{location.coordinates}}]).addTo(map)
+    {{/each}}
+  }
+</script>
