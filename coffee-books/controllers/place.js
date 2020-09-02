@@ -65,6 +65,7 @@ exports.editPlaceProcess = async(req, res) => {
         name,
         placeType,
         location: {
+            type: 'Point',
             coordinates: [lng, lat]
         }
     })

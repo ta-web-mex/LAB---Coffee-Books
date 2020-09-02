@@ -1,3 +1,14 @@
+<div id='map' style='width: 60%; height: 300px;'></div>
+<script>
+  window.onload = () => {
+    let marker = new mapboxgl.Marker()
+      .setLngLat([{{place.location.coordinates}}])
+      .addTo(map);
+    map.flyTo({
+      center: [{{place.location.coordinates}}]
+    })
+  }
+</script>
 <h2>{{place.name}}</h2>
 <h4>{{place.placeType}}</h4>
 <a href="/places/edit/{{place._id}}">Edit this place</a>

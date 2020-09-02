@@ -1,4 +1,4 @@
-<div id='map' style='width: 40%; height: 300px;'></div>
+<div id='map' style='width: 60%; height: 300px;'></div>
 <div>
   <form action="/places/add" method="POST">
     <label for="name">Name:</label>
@@ -9,8 +9,8 @@
       <option value="Bookstore">Bookstore</option>
       <option value="Coffee Shop">Coffee Shop</option>
     </select>
-    <input type="number" hidden name="lng" id="lng">
-    <input type="number" hidden name="lat" id="lat">
+    <input type="text" hidden name="lng" id="lng">
+    <input type="text" hidden name="lat" id="lat">
     <button type="submit">Save new place</button>
   </form>
 </div>

@@ -1,7 +1,22 @@
 <div id='map' style='width: 80%; height: 500px;'></div>
+<script>
+  window.onload = () => {
 {{#each places}}
-<a href="/places/{{_id}}">
-  <h2>{{name}}</h2>
-  <h4>{{placeType}}</h4>
-</a>
+    new mapboxgl.Marker()
+      .setLngLat([{{location.coordinates}}])
+      .addTo(map);
 {{/each}}
+  }
+</script>
+<div id="places-list">
+  <h2>List of our places:</h2>
+{{#each places}}
+  <div class="list-item">
+    <h2>{{name}}</h2>
+    <h4>{{placeType}}</h4>
+    {{#if user}}
+    <a href="/places/{{_id}}">See the place</a>
+    {{/if}}
+  </div>
+{{/each}}
+</div>
