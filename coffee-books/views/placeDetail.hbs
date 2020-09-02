@@ -1,0 +1,13 @@
+<h1>{{name}}</h1>
+
+
+<p>id:{{_id}}</p>
+
+<form action="/places/edit/{{_id}}" method="post">
+  <label for="name">Name: <br>
+    <input type="text" name="name" id="name">
+  </label>
+  <button type="submit">
+    Edit name
+  </button>
+</form>
