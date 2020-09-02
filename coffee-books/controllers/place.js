@@ -33,7 +33,10 @@ exports.addPlaceProcess = async(req, res) => {
     const newPlace = await Place.create({
         name,
         placeType,
-        location: [lat, lng]
+        location: {
+            type: 'Point',
+            coordinates: [lng, lat]
+        }
     })
     await User.findByIdAndUpdate(req.user.id, {
         $push: {
@@ -41,4 +44,34 @@ exports.addPlaceProcess = async(req, res) => {
         }
     })
     res.redirect(`/places`)
+}
+
+exports.editPlaceView = async(req, res) => {
+    const place = await Place.findById(req.params.placeId)
+    res.render('places/editPlace', {
+        user: req.user,
+        place
+    })
+}
+
+exports.editPlaceProcess = async(req, res) => {
+    const {
+        name,
+        placeType,
+        lat,
+        lng
+    } = req.body
+    const place = await Place.findByIdAndUpdate(req.params.placeId, {
+        name,
+        placeType,
+        location: {
+            coordinates: [lng, lat]
+        }
+    })
+    res.redirect(`/places/${place._id}`)
+}
+
+exports.deletePlace = async(req, res) => {
+    await Place.findByIdAndDelete(req.params.placeId)
+    res.redirect('/places')
 }

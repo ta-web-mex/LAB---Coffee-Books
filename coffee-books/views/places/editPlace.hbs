@@ -1,0 +1,15 @@
+<div>
+  <form action="/places/edit/{{place._id}}" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" name="name" value="{{place.name}}" required>
+    <label for="placeType">Place Type:</label>
+    <select name="placeType" id="placeType">
+      <option value="{{place.placeType}}" selected hidden>{{place.placeType}}</option>
+      <option value="Bookstore">Bookstore</option>
+      <option value="Coffee Shop">Coffee Shop</option>
+    </select>
+    <input type="number" hidden name="lng" id="lng">
+    <input type="number" hidden name="lat" id="lat">
+    <button type="submit">Update place</button>
+  </form>
+</div>
