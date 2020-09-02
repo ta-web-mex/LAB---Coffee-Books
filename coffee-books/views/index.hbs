@@ -2,6 +2,11 @@
 <br />
 <a href="/auth/facebook">Login with facebook</a>
 <!-- prettier-ignore-start -->
+<br>
+<a href="/signUp">Create account</a>
+<br>
+<a href="/signIn">Log In</a>
+
 
 <h3>Public</h3>
 
@@ -16,9 +21,11 @@
 
 <script>
   window.onload = () => {
-    {{#each places}}
-    new mapboxgl.Marker().setLngLat([{{location.coordinates}}]).addTo(map)
-  {{/each}}
-  }
+    { {#each places } }
+    new mapboxgl.Marker().setLngLat([{{ location.coordinates }}]).addTo(map)
+  {
+    {
+      /each}}
+    }
 </script>
 <!-- prettier-ignore-end -->

@@ -5,6 +5,7 @@ const userSchema = new Schema(
     email: String,
     googleID: String,
     facebookID: String,
+    password: String,
     places: [
       {
         type: Schema.Types.ObjectId,

@@ -1,6 +1,41 @@
 const passport = require("../config/passport");
 const Place = require("../models/Place");
 const User = require("../models/User");
+const { hashSync, genSaltSync } = require("bcrypt");
+
+exports.loadSignUp = (req, res) => {
+  res.render("signUp");
+};
+exports.signUp = async (req, res) => {
+  const { name, email, password } = req.body;
+  console.log(name, email, password);
+  const existingUser = await User.findOne({ email });
+  if (email === "" || password === "") {
+    return res.render("signUp", { error: "Missing fields." });
+  }
+  if (existingUser) {
+    return res.render("signUp", {
+      error:
+        "User already registered with that account, try loggin in with social media",
+    });
+  }
+  const hashPwd = hashSync(password, genSaltSync(12));
+  await User.create({ name, email, password: hashPwd });
+  res.redirect("/logIn");
+};
+exports.loadLogIn = (req, res) => {
+  res.render("logIn");
+};
+exports.logIn = passport.authenticate("local", {
+  successRedirect: "/private",
+  failureRedirect: "/logIn",
+  failureFlash: true,
+});
+
+exports.logOut = (req, res) => {
+  req.logout();
+  res.redirect("/logIn");
+};
 
 exports.loadIndex = async (req, res, next) => {
   const places = await Place.find();

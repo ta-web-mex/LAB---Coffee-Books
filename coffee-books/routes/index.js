@@ -13,12 +13,21 @@ const {
   loadUpdatePlace,
   updatePlace,
   deletePlace,
+  loadSignUp,
+  signUp,
+  loadLogIn,
+  logIn,
+  logOut,
 } = require("../controllers/index");
-//FALTA ESTRATEGIA LOCAL!!!!!
 router.get("/index", loadIndex);
 router.get("/", (req, res) => {
   res.redirect("/index");
 });
+router.get("/logOut", logOut);
+router.get("/signUp", loadSignUp);
+router.post("/signUp", signUp);
+router.get("/logIn", loadLogIn);
+router.post("/logIn", logIn);
 router.get("/auth/google", loadGoogle);
 router.get("/auth/google/callback", loginGoogle);
 router.get("/private", enssureLogin("/"), loadPrivate);

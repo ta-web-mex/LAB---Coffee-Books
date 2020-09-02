@@ -2,6 +2,29 @@ const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require("../models/User");
 const FacebookStrategy = require("passport-facebook").Strategy;
+const LocalStrategy = require("passport-local").Strategy;
+const { compareSync } = require("bcrypt");
+//local
+passport.use(
+  new LocalStrategy(
+    {
+      usernameField: "email",
+      passwordField: "password",
+    },
+    async (email, password, done) => {
+      try {
+        const user = await User.findOne({ email });
+        if (!user) return done(null, false, { message: "incorrect username" });
+        if (!compareSync(password, user.password))
+          return done(null, false, { message: "Incorrect password" });
+        done(null, user);
+      } catch (error) {
+        console.error(error);
+        done(error);
+      }
+    }
+  )
+);
 //google
 passport.use(
   new GoogleStrategy(

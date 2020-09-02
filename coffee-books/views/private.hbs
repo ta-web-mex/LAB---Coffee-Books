@@ -18,12 +18,15 @@
 {{/each}}
 <br />
 <a href="/">Return to Public</a>
+<a href="/logOut">Logout</a>
 
 <script>
   window.onload = () => {
-    {{#each places}}
-    new mapboxgl.Marker().setLngLat([{{location.coordinates}}]).addTo(map)
-  {{/each}}
-  }
+    { {#each places } }
+    new mapboxgl.Marker().setLngLat([{{ location.coordinates }}]).addTo(map)
+  {
+    {
+      /each}}
+    }
 </script>
 <!-- prettier-ignore-end -->
