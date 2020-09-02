@@ -1,0 +1,29 @@
+<h2>Log In</h2>
+<form action="/login" method="POST">
+  <div>
+    <label for="name">Name</label>
+    <input type="text" name="name">
+  </div>
+
+  <div>
+    <label for="email">Email</label>
+    <input type="email" name="email">
+  </div>
+
+  <div>
+    <label for="password">Password</label>
+    <input type="password" name="password">
+  </div>
+
+
+  {{#if error}}
+  <div class="error-message">{{error}}</div>
+  {{/if}}
+
+  <div>
+    <button>Log in</button>
+  </div>
+  <p>or</p>
+  <p><a href="/auth/google">Login with Google</a></p>
+  <p><a href="/auth/facebook">Login with Facebook</a></p>
+</form>

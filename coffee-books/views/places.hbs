@@ -1,0 +1,28 @@
+
+<h1>PLACES</h1>
+<div id='map' style='width: 100vhw; height: 50vh;'></div>
+
+<form action="/places/new" method="post">
+  <label for="name">Name: <br>
+    <input type="text" name="name" id="name">
+  </label>
+  <br>
+  <label for="placetype">Place Type<br></label>
+    <select name="location" id="location" >
+    <option value="coffee shop">coffee shop</option>
+    <option value="bookstore">bookstore</option>
+   </select>
+  <br>
+  <input type="text" name="lng" id="lng" hidden>
+  <input type="text" name="lat" id="lat" hidden>
+  <button type="submit">
+    Add Place
+  </button>
+</form>
+
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css" />
+
+<script src="/javascripts/places.js"></script>
+
