@@ -1,0 +1,26 @@
+<h2>Update Place</h2>
+<div id='map' style='width: 100%; height: 400px;'></div>
+
+<form action="/place/update/{{_id}}" method="post">
+    <label for="name">Name</label>
+    <input value="{{name}}" required name="name" type="text">
+    <label for="location">location</label>
+
+    <select value="{{placeType}}" required name="placeType" id="placeType">
+        <option value="coffee shop">Coffee shop</option>
+        <option value="bookstore">bookstore</option>
+
+    </select>
+    <input value="{{location.coordinates.[0]}}" hidden id="lat" name="lat" type="text">
+    <input value="{{location.coordinates.[1]}}" hidden id="lng" name="lng" type="text">
+    <button type="submit">Submit!</button>
+</form>
+<a href="/private">Cancel</a>
+
+
+
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet"
+    href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
+    type="text/css" />
+<script src="/javascripts/addPlace.js"></script>
