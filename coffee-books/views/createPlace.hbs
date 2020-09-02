@@ -1,0 +1,21 @@
+<h1>Add place:</h1>
+
+<div id='map' style='width: 100%; height: 400px;'></div>
+
+<form action="/places/new" method="POST">
+  <div class="form-group">
+                <label for="name">Nombre: </label>
+                <input type="text" class="form-control"  name="name">
+            </div>
+            <div class="form-group">
+                <label for="description">Descripción: </label>
+                <input type="text" class="form-control" name="description">
+            </div>        
+    <input type="text" name="lng" id="lng" hidden>
+    <input type="text" name="lat" id="lat" hidden>
+    <button type="submit" class="btn btn-primary">Añade el lugar</button>
+</form>
+
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css" />
+<script src="/javascripts/addPlace.js"></script>

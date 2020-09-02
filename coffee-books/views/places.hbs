@@ -1,1 +1,25 @@
 <h3>Aquí puedes guardar tus cafeterías y librerías favoritas</h3>
+<br>
+<div id='map' style='width: 85vw; height: 60vh;'></div>
+
+<script>
+  window.onload = () => {
+    {{#each places}}
+        new mapboxgl.Marker().setLngLat([{{location.coordinates}}]).addTo(map)
+    {{/each}}
+}
+</script>
+<br>
+<a href="/places/new"><button class="btn btn-info">Añade un nuevo lugar</button></a>
+<br>
+<br>
+{{#each places}}
+<div class="card" style="width: 18rem;"></div>
+    <div class="card-body">
+        <h5 class="card-title">{{name}}</h5>
+        <p class="card-text">{{description}}</p>
+        <a href="/places/{{_id}}" class="card-link">Ve más detalles</a>
+    </div>
+</div>
+{{/each}}
+

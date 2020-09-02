@@ -1,0 +1,14 @@
+<h3>Detalles del lugar</h3>
+<br>
+<div id='map' style='width: 85vw; height: 60vh;'></div>
+<script>
+  window.onload = () => {
+        new mapboxgl.Marker().setLngLat([{{location.coordinates}}]).addTo(map)
+}
+</script>
+<br>
+<h4>{{name}}</h4>
+<p>{{description}}</p>
+<br>
+<a href="/places/edit/{{_id}}"><button class="btn btn-info">Edita el lugar</button></a>
+<a href="/places/delete/{{_id}}"><button class="btn btn-info">Borra el lugar</button></a>

@@ -1,0 +1,30 @@
+<h3>Detalles del lugar</h3>
+<br>
+<div id='map' style='width: 85vw; height: 60vh;'></div>
+<script>
+  window.onload = () => {
+        new mapboxgl.Marker().setLngLat([{{location.coordinates}}]).addTo(map)
+}
+</script>
+<h4>{{name}}</h4>
+<p>{{description}}</p>
+<br>
+
+<form action="/places/edit/{{_id}}" method="POST">
+        <div class="form-group">
+            <label for="name">Nombre: </label>
+            <input type="text" class="form-control" required value="{{ name }}" name="title" placeholder="{{ name }}">
+        </div>
+        <div class="form-group">
+            <label for="description">Descripción: </label>
+                <input type="text" class="form-control" required value="{{ description }}" name="genre" placeholder="{{ description }}">
+        </div>
+        <input type="text" name="lng" id="lng" hidden>
+        <input type="text" name="lat" id="lat" hidden>
+        <br>
+        <button type="submit" class="btn btn-primary">Guarda los cambios</button>
+</form>
+
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css" />
+<script src="/javascripts/addPlace.js"></script>

@@ -13,7 +13,13 @@ const {
 } = require("../controllers/auth")
 
 const {
-  placesView
+  placesView,
+  placeView,
+  createPlaceProcess,
+  createPlaceView,
+  editPlace,
+  editPlaceView,
+  deletePlace
 } = require("../controllers/places")
 
 const {
@@ -47,10 +53,19 @@ router.get("/auth/facebook/callback", facebookRedirect)
 //Places
 
 //C
+router.get("/places/new", enssureLogin("/login"), createPlaceView)
+router.post("/places/new", enssureLogin("/login"), createPlaceProcess)
+
 //R
 router.get("/places", placesView)
+router.get("/places/:placeId", placeView)
 
 //U
+router.get("/places/edit/:placeId", editPlaceView)
+router.post("/places/edit/:placeId", editPlace)
+
 //D
+router.get("/places/delete/:placeId", deletePlace)
+
 
 module.exports = router;
