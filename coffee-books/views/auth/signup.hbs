@@ -1,0 +1,23 @@
+{{#if error}}
+<p style="color: red;">{{error}}</p>
+{{/if}}
+<div>
+  <form action="/signup" method="POST">
+    <label for="email">Email:</label>
+    <input type="email" name="email" required>
+    <label for="name">Name:</label>
+    <input type="name" name="name" required>
+    <label for="email">Password:</label>
+    <input type="password" name="password" required>
+    <button type="submit">Create an account</button>
+  </form>
+</div>
+<div>
+  <a href="/auth/google">Register With Google</a>
+</div>
+<div>
+  <a href="/auth/facebook">Register With Facebook</a>
+</div>
+<div>
+  <p>You already have an account?<br><a href="/login">Login here!</a></p>
+</div>

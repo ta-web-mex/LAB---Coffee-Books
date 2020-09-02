@@ -1,0 +1,44 @@
+const User = require('../models/User')
+const Place = require('../models/Place')
+
+exports.getPlaces = async(req, res) => {
+    const places = await Place.find()
+    res.render('places/places', {
+        user: req.user,
+        places
+    })
+}
+
+exports.getPlace = async(req, res) => {
+    const place = await Place.findById(req.params.placeId)
+    res.render('places/place', {
+        user: req.user,
+        place
+    })
+}
+
+exports.addPlaceView = (req, res) => {
+    res.render('places/newPlace', {
+        user: req.user
+    })
+}
+
+exports.addPlaceProcess = async(req, res) => {
+    const {
+        name,
+        placeType,
+        lat,
+        lng
+    } = req.body
+    const newPlace = await Place.create({
+        name,
+        placeType,
+        location: [lat, lng]
+    })
+    await User.findByIdAndUpdate(req.user.id, {
+        $push: {
+            places: newPlace._id
+        }
+    })
+    res.redirect(`/places`)
+}

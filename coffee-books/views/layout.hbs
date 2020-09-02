@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+
+<body>
+  <nav>
+    <h1>Coffee & Books</h1>
+    <ul>
+      <li><a href="/">Homepage</a></li>
+      <li><a href="/places">See our places</a></li>
+      {{#if user}}
+      <li><a href="/places/add">Add new place</a></li>
+      <li><a href="/logout">Logout</a></li>
+      {{else}}
+      <li><a href="/login">Login</a></li>
+      {{/if}}
+    </ul>
+  </nav>
+  <div class="container">
+    {{{body}}}
+  </div>
+
+  <script src="/javascripts/script.js"></script>
+</body>
+
+</html>
