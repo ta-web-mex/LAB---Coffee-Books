@@ -19,7 +19,7 @@ passport.use(
             done(null, user)
         }
         catch (error) {
-            console.error(error)
+            console.log(error)
             done(error)
         }
     }
