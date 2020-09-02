@@ -1,0 +1,57 @@
+<main class="new-place">
+  <h2>New Place</h2>
+  {{#if this.error}}
+  <div class="error">
+    {{this.error}}
+  </div>
+  {{/if}}
+  <form method="POST" action="/places">
+    <div id='map' style='width: 600px; height: 600px;'></div>
+    <hr>
+    <div>
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" required>
+    </div>
+    <div>
+      <label for="placeType">Place Type</label>
+      <select name="placeType" id="placeType" required>
+        <option value="" selected disabled>Select Type</option>
+        <option value="Bookstore">Bookstore</option>
+        <option value="Coffee Shop">Coffee Shop</option>
+      </select>
+    </div>
+    <div>
+      <label for="address">Address</label>
+      <input type="text" name="address" id="address" required>
+    </div>
+    <div>
+      <label for="longitude">Longitude</label>
+      <input type="number" name="longitude" id="longitude" required step="any">
+    </div>
+    <div>
+      <label for="latitude">Latitude</label>
+      <input type="number" name="latitude" id="latitude" required step="any">
+    </div>
+    <button type="submit">Add New Place</button>
+  </form>
+</main>
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoiZW5ycmV5ZXMiLCJhIjoiY2tla3U0am53MDBvajJxbWs4enlnYW1ybiJ9.EtgLxZJ2vlV2EzjCWHpZig';
+  const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11'
+  });
+  const geoCoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken
+  })
+  map.addControl(geoCoder)
+  geoCoder.on('result', ({ result }) => {
+    const name = result.text;
+    const address = result.place_name.substring(name.length + 2);
+    const [longitude = 0, latitude = 0] = result.center;
+    document.getElementById('name').value = name
+    document.getElementById('address').value = address;
+    document.getElementById('longitude').value = longitude;
+    document.getElementById('latitude').value = latitude;
+  })
+</script>

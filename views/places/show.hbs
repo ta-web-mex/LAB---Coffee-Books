@@ -1,0 +1,26 @@
+<main class="place">
+  <h1>{{ this.place.name }}</h1>
+  <p><b>Type: </b>{{ this.place.placeType }}</p>
+  <p><b>Address: </b>{{ this.place.location.address }}</p>
+  <p><b>Coords: </b>{{ this.place.location.coordinates.[0] }}, {{ this.place.location.coordinates.[1] }}</p>
+  <form method="POST" action="/places/{{this.place._id}}/delete">
+    <a href="/places/{{ this.place._id }}/edit">Edit</a>
+    <button type="submit">Delete</button>
+    <hr>
+    <div id='map' style='width: 600px; height: 600px;'></div>
+  </form>
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZW5ycmV5ZXMiLCJhIjoiY2tla3U0am53MDBvajJxbWs4enlnYW1ybiJ9.EtgLxZJ2vlV2EzjCWHpZig';
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [{{ this.place.location.coordinates }}],
+      zoom: 15
+    });
+    const marker = new mapboxgl.Marker({ color: 'red' })
+    marker
+      .setLngLat([{{ this.place.location.coordinates }}])
+      .setPopup(new mapboxgl.Popup().setHTML(`<span>{{this.place.name}}</span>`))
+      .addTo(map);
+  </script>
+</main>

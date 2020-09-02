@@ -1,0 +1,9 @@
+<main class="places">
+  <h2>Lugares</h2>
+  <ul>
+    {{#each this.places}}
+    <li>{{this.name}} por {{this.author.name}}</li>
+    {{/each}}
+  </ul>
+  <p>Regresar <a href="/">Inicio</a></p>
+</main>

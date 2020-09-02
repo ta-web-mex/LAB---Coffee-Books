@@ -1,0 +1,24 @@
+{
+  "name": "coffee-books",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "cookie-parser": "^1.4.5",
+    "debug": "^2.6.9",
+    "dotenv": "^8.2.0",
+    "express": "^4.14.1",
+    "express-session": "^1.17.1",
+    "hbs": "^4.0.6",
+    "mongoose": "^4.8.7",
+    "morgan": "^1.7.0",
+    "passport": "^0.4.1",
+    "passport-facebook": "^3.0.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-local-mongoose": "^5.0.1",
+    "serve-favicon": "^2.3.2"
+  }
+}

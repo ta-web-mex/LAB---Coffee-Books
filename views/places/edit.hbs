@@ -1,0 +1,57 @@
+<main class="edit-place">
+  <h2>Editar lugar</h2>
+  {{#if this.error}}
+  <div class="error">
+    {{this.error}}
+  </div>
+  {{/if}}
+  <form method="POST" action="/places/{{ this.place._id }}">
+    <div id='map' style='width: 600px; height: 500px;'></div>
+    <hr>
+    <div>
+      <label for="name">Nombre</label>
+      <input type="text" name="name" id="name" value="{{ this.place.name }}" required>
+    </div>
+    <div>
+      <label for="placeType">tipo de lugar</label>
+      <select name="placeType" id="placeType" required>
+        <option value="" selected disabled>Seleccionar tipo</option>
+        <option value="Bookstore">Bookstore</option>
+        <option value="Coffee Shop">Coffee Shop</option>
+      </select>
+    </div>
+    <div>
+      <label for="address">Direccion</label>
+      <input type="text" name="address" id="address" value="{{ this.place.location.address }}" required>
+    </div>
+    <div>
+      <label for="longitude">Lng</label>
+      <input type="number" name="longitude" id="longitude" value="{{ this.place.location.coordinates.[0] }}" required>
+    </div>
+    <div>
+      <label for="latitude">Ltd</label>
+      <input type="number" name="latitude" id="latitude" value="{{ this.place.location.coordinates.[1] }}" required>
+    </div>
+    <button type="submit">Editar</button>
+  </form>
+</main>
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoiZW5ycmV5ZXMiLCJhIjoiY2tla3U0am53MDBvajJxbWs4enlnYW1ybiJ9.EtgLxZJ2vlV2EzjCWHpZig';
+  const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11'
+  });
+  const geoCoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken
+  })
+  map.addControl(geoCoder)
+  geoCoder.on('result', ({ result }) => {
+    const name = result.text;
+    const address = result.place_name.substring(name.length + 2);
+    const [longitude = 0, latitude = 0] = result.center;
+    document.getElementById('name').value = name
+    document.getElementById('address').value = address;
+    document.getElementById('longitude').value = longitude;
+    document.getElementById('latitude').value = latitude;
+  })
+</script>
