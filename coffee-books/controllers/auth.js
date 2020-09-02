@@ -23,9 +23,38 @@ exports.signupProcess = async (req, res) => {
     res.redirect("/login")
 }
 
+//Login
+
 exports.loginView = (req, res) => { res.render ("auth/login")}
 
 exports.loginProcess = passport.authenticate("local", {
+    successRedirect: "/places",
+    failureRedirect: "/login",
+    failureFlash: true
+})
+
+// Google
+
+exports.googleProcess = passport.authenticate("google", {
+    scope: [
+        "https://www.googleapis.com/auth/userinfo.profile",
+        "https://www.googleapis.com/auth/userinfo.email"
+    ]
+})
+
+exports.googleRedirect = passport.authenticate("google", {
+    successRedirect: "/places",
+    failureRedirect: "/login",
+    failureFlash: true
+})
+
+// Facebook
+
+exports.facebookProcess = passport.authenticate("facebook", {
+    scope: ["email"]
+})
+
+exports.facebookRedirect = passport.authenticate("facebook", {
     successRedirect: "/places",
     failureRedirect: "/login",
     failureFlash: true
