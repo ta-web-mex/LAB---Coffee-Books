@@ -9,10 +9,17 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 const chlkAnm = require('chalk-animation');
+const flash = require("connect-flash")
+const passport = require("./config/passport")
+
+
 
 
 mongoose
-  .connect('mongodb://localhost/coffee-books', {useNewUrlParser: true})
+  .connect('mongodb://localhost/coffee-books', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
   .then(x => {
     chlkAnm.rainbow(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -30,6 +37,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+require("./config/session")(app)
+
+app.use(flash())
+
+app.use(passport.initialize())
+app.use(passport.session())
+
 
 // Express View engine setup
 
@@ -58,4 +72,4 @@ app.use('/', index);
 
 module.exports = app;
 
-app.listen(3000, () => {})
+app.listen(3000, () => {console.log("running on 3000")})
