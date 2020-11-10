@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt")
 const passport = require("passport")
 const LocalStrategy = require("passport-local").Strategy
-const SlackStrategy = require("passport-slack").Strategy
+const FacebookStrategy = require("passport-facebook").Strategy
 const GoogleStrategy = require("passport-google-oauth20").Strategy
 const User = require("../models/User")
 
@@ -26,7 +26,7 @@ passport.use(
 )
 
 passport.use(
-  new SlackStrategy(
+  new FacebookStrategy(
     {
       clientID: process.env.SLACK_ID,
       clientSecret: process.env.SLACK_SECRET,
