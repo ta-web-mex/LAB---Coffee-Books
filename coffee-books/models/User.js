@@ -15,8 +15,9 @@ const userSchema = new Schema(
     //   enum: ["ELPADRINO", "EDITOR", "INVITADO"],
     //   default: "INVITADO"
     // },
+    places: Schema.Types.ObjectId,
     googleID: String,
-    slackID: String
+    facebookID: String
   },
   {
     timestamps: true
