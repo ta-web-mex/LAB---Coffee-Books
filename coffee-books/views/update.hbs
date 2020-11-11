@@ -11,5 +11,29 @@
     <option value="bookstore">Bookstore</option>
   </select>
 <br>
+<input type="text" name="lat" id="lat" hidden>
+<input type="text" name="lng" id="lng" hidden>
 <button type="submit">Update</button>
+<div id='map' style='width: 400px; height: 300px;'></div>
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoibHVpenpteSIsImEiOiJja2hjdTVxaGMwY2tyMnJtZGkxbHJoMGt6In0.nzP1VCnAB3QIsL-RjFgLwA';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11'
+  });
+  const gc=new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl
+  })
+
+  gc.on('result', e => {
+    const { result: { center, text } } = e
+    const $nameInput = document.querySelector('#name')
+    document.querySelector('#lng').value = center[0]
+    document.querySelector('#lat').value = center[1]
+    document.querySelector('button').removeAttribute('disabled')
+  })
+  map.addControl(gc)
+
+</script>
 </form>

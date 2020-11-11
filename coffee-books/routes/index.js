@@ -8,7 +8,8 @@ const {
   googleInit,
   googleCb,
   facebookInit,
-  facebookCB
+  facebookCB,
+  feeds
 }=require("../controllers/auth")
 
 const{isAuth,isNotAuth}=require("../middlewares")
@@ -30,6 +31,7 @@ router.get('/', (req, res, next) => {
 //Auth
 router.get("/login", isNotAuth,loginView)
 router.get("/places",isAuth, places)
+router.get("/feeds", isNotAuth, feeds)
 
 router.get("/logout", logout)
 
@@ -49,5 +51,7 @@ router.get("/places/:placeId", isAuth, detailPlace)
 router.get("/places/edit/:placeId", isAuth, editPlace)
 router.post("/places/update/:placeId", isAuth, updatePlace)
 router.get("/places/delete/:placeId", isAuth, deletePlace)
+
+
 
 module.exports = router;

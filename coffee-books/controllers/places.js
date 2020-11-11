@@ -6,6 +6,7 @@ exports.newPlaceForm=(req,res)=>{
   })
 }
 
+
 exports.addNewPlace=async (req,res)=>{
   //1. Info del formato
   const {name, placeType, lat, lng}=req.body
@@ -28,7 +29,7 @@ exports.detailPlace=async(req,res)=>{
   const {placeId}=req.params
   const place=await Place.findById(placeId)
   console.log(place)
-  res.render('detail', {token: process.env.MAPBOX_TOKEN, place})
+  res.render('detail', place)
 }
 
 exports.editPlace=async(req,res)=>{
@@ -37,10 +38,14 @@ exports.editPlace=async(req,res)=>{
 }
 
 exports.updatePlace=async(req,res)=>{
-  const {name, placeType}=req.body
+  const {name, placeType, lat, lng}=req.body
   const {placeId}=req.params
-  await Place.findByIdAndUpdate(placeId, {name, placeType})
-  res.redirect('/detail/${placeId}')
+  const location={
+    type:"Point",
+    coordinates:[lng,lat]
+  }
+  await Place.findByIdAndUpdate(placeId, {name, placeType, location})
+  res.redirect('/places')
 }
 
 exports.deletePlace=async(req,res)=>{
@@ -48,3 +53,4 @@ exports.deletePlace=async(req,res)=>{
   await Place.findByIdAndDelete(placeId)
   res.redirect('/')
 }
+

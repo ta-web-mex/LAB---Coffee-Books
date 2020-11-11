@@ -13,6 +13,12 @@ exports.places= async (req,res)=>{
     res.render("places", {places})
 }
 
+exports.feeds= async (req,res)=>{
+    const places= await Place.find()
+    console.log(places)
+    res.render("feeds", {places})
+}
+
 //Vista de logout
 exports.logout=(req,res)=>{
     req.logout()

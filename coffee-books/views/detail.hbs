@@ -2,6 +2,19 @@
 
 <h4>Type of Place: {{placeType}}</h4>
 
-<h4>Location {{location}}  </h4>
+<div id='map' style='width: 400px; height: 450px;'></div>
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoibHVpenpteSIsImEiOiJja2hjdTVxaGMwY2tyMnJtZGkxbHJoMGt6In0.nzP1VCnAB3QIsL-RjFgLwA';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [{{location.coordinates}}],
+    zoom:12
+  });
+
+new mapboxgl.Marker().setLngLat([{{ location.coordinates }}]).addTo(map)
+
+</script>
+
 
 <a href="/places/edit/{{_id}}"><button>Edit</button></a>

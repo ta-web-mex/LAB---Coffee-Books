@@ -25,7 +25,7 @@
     mapboxgl: mapboxgl
   })
 
-   gc.on('result', e => {
+  gc.on('result', e => {
     const { result: { center, text } } = e
     const $nameInput = document.querySelector('#name')
     document.querySelector('#lng').value = center[0]
@@ -33,7 +33,6 @@
     document.querySelector('button').removeAttribute('disabled')
   })
   map.addControl(gc)
-
 
 </script>
 
