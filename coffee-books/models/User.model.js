@@ -8,10 +8,12 @@ const userSchema = new Schema(
     },
   email:{
     type: String,
+    // },
+    // places:{
+    //     type:[ObjectId]
     },
-    places:{
-        type:[ObjectId]
-    }
+    googleID: String,
+    facebookID: String
   },
   {
   timestamps: true
