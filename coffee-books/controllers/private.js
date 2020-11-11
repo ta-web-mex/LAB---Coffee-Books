@@ -31,7 +31,7 @@ exports.placeEdit = async(req, res) => {
 exports.placeEditMethod = async(req, res) => {
     const { placeId } = req.params
     const { name, placeType } = req.body;
-    await Place.findByIdAndUpdate(placeId, { name, placeType }, { new: true })
+    await Place.findByIdAndUpdate(placeId, { name, placeType })
     res.redirect("/places")
 }
 
