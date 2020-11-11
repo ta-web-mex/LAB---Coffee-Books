@@ -7,7 +7,6 @@ exports.newPlaceForm = (req, res) => {
 }
 
 exports.addNewPlace = async (req, res) => {
-    // 1.Obtener la info del form
     const {
         name,
         description,
@@ -15,18 +14,15 @@ exports.addNewPlace = async (req, res) => {
         lng
     } = req.body
     console.log(name, description, lat, lng)
-    // 2. Crear el lugar
     const location = {
         type: "Point",
         coordinates: [lng, lat]
     }
-    // 3. Crear registro
     await Place.create({
         name,
         description,
         location
     })
-    // 4. redirigir
     res.redirect("/dashboard")
 }
 // exports.dashboardView = async (res, req) => {

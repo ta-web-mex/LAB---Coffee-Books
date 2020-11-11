@@ -25,38 +25,11 @@ passport.use(
                 })
             }
 
-            done(null, user) // envia el usuario a serializeUser
+            done(null, user) 
         }
     )
 )
 
-// passport.use(
-//     new SlackStrategy({
-//             clientID: process.env.SLACK_ID,
-//             clientSecret: process.env.SLACK_SECRET,
-//             callbackURL: "/auth/slack/callback"
-//         },
-//         async (accessToken, refreshToken, profile, done) => {
-//             try {
-//                 const user = await User.findOne({
-//                     slackID: profile.id
-//                 })
-//                 if (user) {
-//                     return done(null, user)
-//                 }
-
-//                 const newUser = await User.create({
-//                     email: profile.user.email,
-//                     slackID: profile.id
-//                 })
-
-//                 done(null, newUser)
-//             } catch (err) {
-//                 done(err)
-//             }
-//         }
-//     )
-// )
 
 passport.use(new FacebookStrategy({
         clientID: process.env.FACEBOOK_APP_ID,
@@ -129,7 +102,7 @@ passport.serializeUser((user, cb) => {
 passport.deserializeUser(async (id, cb) => {
     const user = await User.findById(id)
     user.password = null
-    cb(null, user) // Guarda lo que le enviamos como segundo argumento en la sesion como req.user
+    cb(null, user) 
 })
 
 module.exports = passport
