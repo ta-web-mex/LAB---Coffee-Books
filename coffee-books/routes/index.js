@@ -10,7 +10,17 @@ const {
   facebookInit,
   facebookCB
 }=require("../controllers/auth")
+
 const{isAuth,isNotAuth}=require("../middlewares")
+
+const {
+  newPlaceForm,
+  addNewPlace,
+  detailPlace,
+  editPlace,
+  updatePlace,
+  deletePlace
+}=require("../controllers/places")
 
 /* GET home page */
 router.get('/', (req, res, next) => {
@@ -30,5 +40,14 @@ router.get("/auth/google/callback", googleCb)
 //Facebook
 router.get("/auth/facebook",facebookInit)
 router.get("/auth/facebook/callback", facebookCB)
+
+//CRUD Places
+router.get("/places/create", isAuth, newPlaceForm)
+router.post("/places/create", isAuth, addNewPlace)
+
+router.get("/places/:placeId", isAuth, detailPlace)
+router.get("/places/edit/:placeId", isAuth, editPlace)
+router.post("/places/update/:placeId", isAuth, updatePlace)
+router.get("/places/delete/:placeId", isAuth, deletePlace)
 
 module.exports = router;

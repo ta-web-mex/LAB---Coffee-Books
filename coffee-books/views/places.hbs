@@ -1,0 +1,9 @@
+<h1>Places</h1>
+
+<ul>
+  {{#each places}}
+  <li><a href="/places/{{_id}}">{{name}}</a>
+  <a href="/places/delete/{{_id}}">✖</a></li>
+  {{/each}}
+</ul>
+
