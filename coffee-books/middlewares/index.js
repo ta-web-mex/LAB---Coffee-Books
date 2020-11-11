@@ -22,8 +22,6 @@ exports.checkRoles = roles => (req, res, next) => {
   }
 }
 
-// function checkRole(role){
-//   return function (req, res, next) {
-//     //....
-//   }
-// }
+/////errorMaps
+exports.catchErrors = controller => (req, res, next) =>
+  controller(req, res).catch(next)

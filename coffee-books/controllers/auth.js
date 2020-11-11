@@ -1,7 +1,4 @@
-// Export individual
-// {
-// signupView: () => {}
-//}
+log = console.log
 const bcrypt = require("bcrypt")
 const User = require("../models/User")
 const passport = require("../config/passport")
@@ -41,6 +38,7 @@ exports.loginView = (req, res) => {
 }
 
 exports.loginProcess = (req, res) =>{
+  log(req.session)
   res.render("auth/loged")
   //Esta mierda rompe todo
   // // successRedirect: "/loged",
