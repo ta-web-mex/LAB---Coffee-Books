@@ -1,0 +1,32 @@
+
+<h1>All the places you can go to</h1>
+<p>Add your coffee shop or a bookstore</p>
+<form action="/auth/update/{{_id}}" method="POST">
+<label for="Name"> Name of the place
+<input type="text" name="name" id="name" value="{{name}}">
+</label>
+
+<br>
+<label for="placeType"> Type of place </label>
+<select name="type" id="type"> 
+    <option value="{{type}}">{{type}}</option>
+    <option value="Coffee Shop"> Coffee Shop</option>
+    <option value="Bookstore">Bookstore</option>
+</select>
+<br>
+
+<label for="address">Address
+    <input type="text" name="address" id="address" value="{{address}}">
+</label>
+<br>
+
+<label for="coordinates">Coordinates</label>
+ <input type="text" name="lat" id="lat" value="{{lat}}" >
+  <input type="text" name="lng" id="lng" value="{{lng}}">
+
+<br>
+ {{#if errorMessage}}
+  <div class="error-message">{{errorMessage}}</div>
+  {{/if}}
+<button type="submit">Update</button>
+</form>

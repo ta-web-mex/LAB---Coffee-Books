@@ -1,0 +1,76 @@
+<h1>All the places you can go to</h1>
+<p>Add your coffee shop or a bookstore</p>
+<form action="/privatePage" method="POST">
+<label for="Name"> Name of the place
+<input type="text" name="name" id="name">
+</label>
+
+<br>
+<label for="placeType"> Type of place </label>
+<select name="type" id="type"> 
+    <option value="Coffee Shop"> Coffee Shop</option>
+    <option value="Bookstore">Bookstore</option>
+</select>
+<br>
+
+<label for="address">Address
+    <input type="text" name="address" id="address">
+</label>
+<br>
+
+<label for="coordinates">Coordinates</label>
+ <input type="text" name="lat" id="lat" >
+  <input type="text" name="lng" id="lng" >
+
+<br>
+ {{#if errorMessage}}
+  <div class="error-message">{{errorMessage}}</div>
+  {{/if}}
+<button type="submit">Save</button>
+</form>
+
+
+<p>Here are your favorite places</p>
+    <div id="map" style="width: 400px; height: 300px"></div>
+
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoiaXNhZmVycmFyYSIsImEiOiJja2hjbnB5aHkwMm4yMnJycnJzNjZ6bWYwIn0.7s8wi3l0DnRJskfCjlmXOg';
+var map = new mapboxgl.Map({
+  container: "map",
+  style: "mapbox://styles/mapbox/streets-v11"
+});
+
+const gc = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl
+
+  })
+
+  gc.on('result', e => {
+    const { result: { center, text, place_name } } = e
+    console.log(e)
+    //document.querySelector('#name').value= text
+    //$nameInput.setAttribute('placeholder', text)
+    document.querySelector('#lng').value = center[0]
+    document.querySelector('#lat').value = center[1]
+   document.querySelector('#address').value= place_name
+   // $addressInput.setAttribute('placeholder', place_name) 
+    document.querySelector('button').removeAttribute('disabled')
+
+
+  })
+  map.addControl(gc);
+
+
+  {{#each places}}
+  new mapboxgl.Marker().setLngLat([{{ location.coordinates }}]).addTo(map)
+  {{/each}}
+
+
+</script>
+<h1>All your favs</h1>
+{{#each places}}
+  <li><a href="/detail/{{placeId}}">{{name}}</a></li>
+ {{/each }} 
+
+
