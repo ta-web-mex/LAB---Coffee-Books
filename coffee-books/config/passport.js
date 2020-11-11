@@ -1,9 +1,14 @@
+require('dotenv').config();
+//
 const bcrypt = require("bcrypt")
 const passport = require("passport")
 const LocalStrategy = require("passport-local").Strategy
 const SlackStrategy = require("passport-slack").Strategy
 const GoogleStrategy = require("passport-google-oauth20").Strategy
 const User = require("../models/User")
+const chlkAnm = require('chalk-animation');
+
+
 
 passport.use(
   new LocalStrategy(
@@ -24,6 +29,7 @@ passport.use(
     }
   )
 )
+console.log(process.env);
 
 passport.use(
   new SlackStrategy(
