@@ -29,7 +29,7 @@ passport.use(
     }
   )
 )
-console.log(process.env);
+console.log('The value of PORT is:', process.env.PORT);
 
 passport.use(
   new SlackStrategy(
