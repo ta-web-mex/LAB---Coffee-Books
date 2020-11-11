@@ -1,0 +1,19 @@
+  
+exports.isAuth = (req, res, next) => {
+    if (req.isAuthenticated()) {
+      next()
+    } else {
+      res.redirect("/")
+    }
+  }
+  
+  exports.isNotAuth = (req, res, next) => {
+    if (!req.isAuthenticated()) {
+      next()
+    } else {
+      res.redirect("/")
+    }
+  }
+
+  exports.catchErrors = controller => (req, res, next) =>
+  controller(req, res).catch(next)
