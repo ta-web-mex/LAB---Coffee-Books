@@ -1,0 +1,20 @@
+<h1>Login</h1>
+
+<form action="/login" method="post">
+  <label for="email">Email:
+    <input type="email" name="email" id="email">
+  </label>
+  <br>
+  <label for="password">Password:
+    <input type="password" name="password" id="password">
+  </label>
+  <br>
+  {{#if errorMessage}}
+  <div class="error-message">{{errorMessage}}</div>
+  {{/if}}
+  <button type="submit">Login</button>
+
+  <p> - or -</p>
+  <a href="/auth/facebook">Login With facebook</a><div class="fb-login-button" data-size="medium" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" data-width=""></div>
+  <a href="/auth/google">Login With Google</a>
+</form>
