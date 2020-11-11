@@ -1,0 +1,14 @@
+<p>Edit {{placeToEdit.name}}</p>
+<p>{{placeToEdit.placeType}}</p>
+<form action="/places/edit/{{_id}}" method="POST">
+  <label for="name">Change Name:
+    <input type="text" id="name" name="name" ></input>
+  </label>
+  <label for="placeType">Change Place Type:
+    <select name="placeType" id="placeType">
+      <option value="coffee shop">Coffe shop</option>
+      <option value="bookstore">Bookstore</option>
+    </select>
+   </label>
+   <button type="submit">Edit place</button>
+</form>

@@ -1,0 +1,10 @@
+<h1>These are your places</h1>
+
+{{#each places}}
+  <h3>{{name}}</h3>
+  <p>{{placeType}}</p>
+  <button><a href="/places/edit/{{_id}}">Edit place</a></button>
+  <button><a href="/places/delete/{{_id}}">Delete place</a></button>
+{{/each}}
+<br>
+<button><a href="/places/create">Create a new place</a></button>
