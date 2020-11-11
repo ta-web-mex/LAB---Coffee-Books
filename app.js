@@ -71,5 +71,5 @@ app.use('/', index);
 
 
 module.exports = app;
-
-app.listen(3000, () => {console.log("running on 3000")})
+let port = process.env.PORT
+app.listen(port, () => {console.log("running on port:", port)})
