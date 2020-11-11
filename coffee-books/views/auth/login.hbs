@@ -1,0 +1,57 @@
+<h1>WELCOME!</h1>
+<br>
+<h2>Please Login</h2>
+<br>
+<form action="/login" method="post">
+  <label for="username">Username:
+    <input type="text" name="username" id="username">
+  </label>
+  <br>
+  <br>
+  <label for="email">Email:
+    <input type="email" name="email" id="email">
+  </label>
+  <br>
+  <br>
+  <label for="password">Password:
+    <input type="password" name="password" id="password">
+  </label>
+  <br>
+  <br>
+  {{#if errorMessage}}
+  <div class="error-message">{{errorMessage}}</div>
+  {{/if}}
+  <br>
+  <br>
+  <button type="submit">Login</button>
+</form>
+<br>
+<p>- or -</p>
+<br>
+<button><a href="/auth/google"></a>LOGIN with Google</button>
+{{!-- <fb:login-button 
+  scope="public_profile,email"
+  onlogin="checkLoginState();">
+</fb:login-button> --}}
+
+{{!-- <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '427518731979822',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v9.0'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script> --}}
