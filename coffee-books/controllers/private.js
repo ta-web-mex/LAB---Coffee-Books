@@ -1,4 +1,5 @@
 const Place = require("../models/Place")
+const User = require("../models/User")
 
 exports.profileView = (req, res) => res.render("private/profile")
 
@@ -15,7 +16,9 @@ exports.placesCreateMethod = async(req, res) => {
         type: "Point",
         coordinates: [lng, lat]
     }
-    await Place.create({ name, placeType, location })
+    const newPlace = await Place.create({ name, placeType, location })
+    const userId = req.user
+    await User.findByIdAndUpdate(userId, { $push: { places: newPlace._id } })
     res.redirect('/places')
 }
 

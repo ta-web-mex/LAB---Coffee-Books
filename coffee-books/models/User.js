@@ -5,7 +5,7 @@ const userSchema = new Schema({
     password: String,
     facebookID: String,
     googleID: String,
-    places: [String]
+    places: [Schema.Types.ObjectId]
 }, {
     timestamps: true
 })
