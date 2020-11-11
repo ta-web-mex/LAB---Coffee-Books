@@ -1,2 +1,15 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="center">
+  <h1>{{title}}</h1>
+  <p>Welcome, {{user.name}}</p>
+  <div class="box"></div>
+  {{#if user}}
+    <a href="/logout"><button id="logout">Log out</button></a>
+  {{else}}
+    <a href="/login"><button id="login">Log in with email</button></a>
+    <br>
+    <a href="/signup"><button id="signup">No account? Sign up here</button></a>
+    <p>-- or --</p>
+    <a href="/auth/google"><button>Login With Google</button></a>
+  {{/if}}
+  </div>
+</div>

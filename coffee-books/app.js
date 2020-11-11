@@ -9,9 +9,11 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
+const passport = require('./configs/passport')
+const flash = require("connect-flash")
 
 mongoose
-  .connect('mongodb://localhost/coffee-books', {useNewUrlParser: true})
+  .connect('mongodb://localhost/coffee-books', {useNewUrlParser: true, useUnifiedTopology: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -30,6 +32,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+//Passport/Session Setup
+require("./configs/session")(app)
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(flash())
+
 // Express View engine setup
 
 app.use(require('node-sass-middleware')({
@@ -47,7 +55,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Books & Coffee';
 
 
 

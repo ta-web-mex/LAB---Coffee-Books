@@ -1,0 +1,27 @@
+<div class="center">
+    <h1>Sign up</h1>
+    {{#if error}}
+    <p style="color: crimson;">{{error}}</p>
+    {{/if}}
+    <form action="/signup" method="post">
+         <label for="name">Name (required):
+            <input type="text" name="name" id="name">
+        </label>
+        <br>
+        <label for="email">Email (required):
+            <input type="text" name="email" id="email">
+        </label>
+        <br>
+        <label for="password">Password (required):
+            <input type="text" name="password" id="password">
+        </label>
+        <br>
+        <label for="places">Places:
+            <input type="text" name="places" id="places">
+        </label>
+        <br>
+        <br>
+        <button type="submit">Sign up</button>
+    </form>
+    <a href="/"><button>Back</button></a>
+</div>
