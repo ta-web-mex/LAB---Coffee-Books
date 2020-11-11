@@ -27,7 +27,6 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
     "passport-slack": "0.0.7",
-    "passport-slack-oauth2": "^1.0.2",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {

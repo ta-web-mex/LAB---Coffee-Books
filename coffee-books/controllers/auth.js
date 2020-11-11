@@ -41,12 +41,12 @@ exports.loginView = (req, res) => {
 }
 
 exports.loginProcess = (req, res) =>{
-  res.render("auth/loged", { errorMessage: req.flash("error") })
-  //Esta mierda rompe todo 
+  res.render("auth/loged")
+  //Esta mierda rompe todo
   // // successRedirect: "/loged",
   // // failureRedirect: "/login",
   // failureFlash: true
-})
+}
 
 exports.privatePage = (req, res) => {
   res.render("private", req.user)
