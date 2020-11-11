@@ -7,7 +7,8 @@ const placeSchema = new Schema(
     type: String
     },
   location:{
-    type: Object
+    type: {type:String},
+    coordinates:[Number]
     },
   placeType:{
     type: String,

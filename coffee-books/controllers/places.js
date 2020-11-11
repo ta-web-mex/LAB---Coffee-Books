@@ -1,18 +1,24 @@
 const Place= require("../models/Place.model")
 
 exports.newPlaceForm=(req,res)=>{
-  res.render("create")
+  res.render("create", {
+    token: process.env.MAPBOX_TOKEN
+  })
 }
 
 exports.addNewPlace=async (req,res)=>{
   //1. Info del formato
-  const {name, placeType}=req.body
+  const {name, placeType, lat, lng}=req.body
   //2. Generar location
-  
+  const location={
+    type:"Point",
+    coordinates:[lng,lat]
+  }
   //3. Crear place
   await Place.create({
     name,
-    placeType
+    placeType,
+    location
   })
   //4. Redirigir al feed
   res.redirect('/')
@@ -22,7 +28,7 @@ exports.detailPlace=async(req,res)=>{
   const {placeId}=req.params
   const place=await Place.findById(placeId)
   console.log(place)
-  res.render('detail', place)
+  res.render('detail', {token: process.env.MAPBOX_TOKEN, place})
 }
 
 exports.editPlace=async(req,res)=>{

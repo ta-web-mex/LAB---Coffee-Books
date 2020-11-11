@@ -1,14 +1,16 @@
-const User=require("../models/User.model")
 const passport=require("../config/passport")
+const Place=require("../models/Place.model")
 
 //Vista de login
-exports.loginView=(req, res)=>{
+exports.loginView= (req, res)=>{
     res.render("auth/login")
 }
 
 //Vista de places (CRUD)
-exports.places=(req,res)=>{
-    res.render("places", req.user)
+exports.places= async (req,res)=>{
+    const places= await Place.find()
+    console.log(places)
+    res.render("places", {places})
 }
 
 //Vista de logout
