@@ -1,0 +1,45 @@
+<h1>Add a new place!</h1>
+<form action="/map/new" method="post">
+  <label for="name">Name:</label> <br>
+  <input type="text" name="name" id="name"> <br>
+  <select name="placeType" id="placeType">
+    <option value="coffee shop">Coffee Shop</option>
+    <option value="bookstore">Bookstore</option>
+  </select> <br>
+  <input type="text" name="lng" id="lng" hidden>
+  <input type="text" name="lat" id="lat" hidden>
+  <button id="submit" type="submit" disabled>Submit</button>
+</form>
+
+<div id='map' style='width: 100%; height: 600px;'></div>
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet"
+  href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css" />
+<script>
+  mapboxgl.accessToken = '{{token}}';
+
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    zoom: 13,
+    center: [-99.1622182, 19.4211955]
+  });
+
+  const gc = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl
+  })
+
+  map.addControl(new mapboxgl.NavigationControl(), 'bottom-left');
+
+  gc.on('result', e => {
+    const { result: { center, text } } = e;
+
+    document.querySelector('#name').value = text;
+    document.querySelector('#lng').value = center[0];
+    document.querySelector('#lat').value = center[1];
+    document.querySelector('#submit').removeAttribute('disabled');
+  })
+
+  map.addControl(gc);
+</script>
