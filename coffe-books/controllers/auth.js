@@ -63,7 +63,13 @@ exports.facebookCallback = passport.authenticate('facebook', {
 })
 
 exports.dashboardView = (req, res) => {
-    res.render("auth/dashboard")
+    if (req.session.currentUser) {
+        res.render("auth/dashboard")
+    }
+    else {
+        res.render("login")
+    }
+    
 }
 
 exports.logout = (req, res) => {

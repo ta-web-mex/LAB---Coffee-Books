@@ -3,8 +3,7 @@ const { Schema, model } = require("mongoose")
 const userSchema = new Schema(
     {
         email: {
-            type: String,
-            unique: true
+            type: String
         },
         password: {
             type: String

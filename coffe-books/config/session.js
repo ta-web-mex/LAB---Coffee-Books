@@ -5,7 +5,7 @@ const mongoose = require("mongoose")
 module.exports = app => {
     app.use(
         session({
-            secret: "sertyuiknbvcde567ujnbvfr67uhv",
+            secret: "sertyuiknbvcde567ujnbvf",
             store: new MongoStore({
                 mongooseConnection: mongoose.connection
             }),
