@@ -1,0 +1,16 @@
+<div>Private page</div>
+{{user.email}}
+<br>
+<ul>
+    <li><a href="private-page">Home</a></li>
+    <li><a href="/place/create">Create a new place</a></li>
+  </ul>
+<br>
+<h1>Places</h1>
+{{#each places}}
+  <li>{{name}}<a href="/place/edit/{{_id}}"> - Edit - </a> 
+    <a href="/place/delete/{{_id}}"> Delete ✖ </a></li>
+{{/each}}
+<br>
+
+
