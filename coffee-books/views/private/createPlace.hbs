@@ -1,6 +1,7 @@
+
 <form action="/places/create" method="POST">
   <label for="name">Name:
-    <input type="text" id="name" name="name"></input>
+    <input type="text" id="name" name="name">
   </label>
   <label for="placeType">Place Type:
     <select name="placeType" id="placeType">
@@ -8,5 +9,31 @@
       <option value="bookstore">Bookstore</option>
     </select>
    </label>
+   <input id="lat" type="text" name="lat" hidden>
+   <input id="lng" type="text" name="lng" hidden>
    <button type="submit">Create place</button>
 </form>
+
+<div id='map' style='width: 100%; height: 450px;'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoidG9tYXNzY2F0dGluaSIsImEiOiJja2hkZ2VkemQwYzhvMzBwYzE4YmRwMDZnIn0.IhJp4dvYfAhH834x8qbxXw';
+var map = new mapboxgl.Map({
+container: 'map',
+style: 'mapbox://styles/mapbox/streets-v11'
+});
+
+const gc = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl
+  })
+  gc.on('result', e => {
+    const { result: { center, text } } = e
+    const $nameInput = document.querySelector('#name')
+    $nameInput.value = text
+    document.querySelector('#lng').value = center[0]
+    document.querySelector('#lat').value = center[1]
+  })
+
+  map.addControl(gc)
+
+</script>

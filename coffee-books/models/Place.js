@@ -2,7 +2,10 @@ const { Schema, model } = require("mongoose")
 
 const placeSchema = new Schema({
     name: String,
-    location: Object,
+    location: {
+        type: { type: String },
+        coordinates: [Number]
+    },
     placeType: {
         type: String,
         enum: ['coffee shop', 'bookstore']

@@ -10,8 +10,12 @@ exports.placesView = async(req, res) => {
 exports.placesCreate = (req, res) => res.render("private/createPlace")
 
 exports.placesCreateMethod = async(req, res) => {
-    const { name, placeType } = req.body
-    await Place.create({ name, placeType })
+    const { name, placeType, lat, lng } = req.body
+    const location = {
+        type: "Point",
+        coordinates: [lng, lat]
+    }
+    await Place.create({ name, placeType, location })
     res.redirect('/places')
 }
 
@@ -22,9 +26,9 @@ exports.placeEdit = async(req, res) => {
 }
 
 exports.placeEditMethod = async(req, res) => {
-    const { id } = req.params.placeId
+    const { placeId } = req.params
     const { name, placeType } = req.body;
-    await Place.findByIdAndUpdate(id, { name, placeType }, { new: true })
+    await Place.findByIdAndUpdate(placeId, { name, placeType }, { new: true })
     res.redirect("/places")
 }
 
