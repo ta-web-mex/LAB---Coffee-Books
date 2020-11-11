@@ -1,0 +1,23 @@
+body {
+  padding: 0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00B7FF; }
+
+#user__save-location {
+  position: absolute;
+  z-index: 5;
+  bottom: 0;
+  left: 20px; }
+
+hr {
+  margin: 15px 0; }
+
+.form-group {
+  margin: 0; }
+
+#map {
+  height: calc(100vh - 49.2px); }
+
+/*# sourceMappingURL=style.css.map */

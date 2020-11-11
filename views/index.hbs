@@ -1,0 +1,81 @@
+<div id='map' style='width: 100%;'></div>
+
+{{#if user}}
+<div id="user__save-location" class="card mb-4" style="width: 18rem;">
+  <div class="card-body">
+    <form action="/place/add" method="post" class="form-group">
+      <h5 class="card-title" id="place-name"></h5>
+      <input type="text" name="name" id="name" hidden>
+      <h6 class="card-subtitle my-3 text-muted">Place Type</h6>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="placeType" id="coffee-shop" value="coffee shop" required>
+        <label class="form-check-label" for="coffe-shop">Coffee Shop</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="placeType" id="bookstore" value="bookstore">
+        <label class="form-check-label" for="bookstore">Bookstore</label>
+      </div>
+      <input type="text" name="lat" id="lat" hidden>
+      <input type="text" name="lng" id="lng" hidden>
+      <hr>
+      <button class="btn btn-sm btn-success" type="submit" id="save" disable>Save</button>
+    </form>
+  </div>
+  {{#with user}}
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        Your Destinations
+      </li>
+      {{#each places}}
+      <div class="list-group-item d-flex justify-content-between">
+        <p class="my-3">{{name}}</p>
+        <form action="/place/delete/{{_id}}" class="d-flex align-items-center">
+          <button type="submit" class="btn btn-sm btn-outline-danger">delete</button>
+        </form>
+      </div>
+    {{/each}}
+  </ul>
+  {{/with}}
+</div>
+
+<script>
+  mapboxgl.accessToken = '{{token}}';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11'
+  });
+
+  {{#each places}}
+  new mapboxgl.Marker().setLngLat([{{ location.coordinates }}]).addTo(map)
+  {{/each}}
+
+  const gc = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl
+  })
+  gc.on('result', e => {
+    const { result: { center, text } } = e
+    console.log(e)
+    document.querySelector('#place-name').innerHTML = text
+    document.querySelector('#name').value = text
+    document.querySelector('#lng').value = center[0]
+    document.querySelector('#lat').value = center[1]
+    document.querySelector('#save').removeAttribute('disabled')
+  })
+  map.addControl(gc)
+</script>
+
+{{/if}}
+
+{{#unless user}}
+<script>
+  mapboxgl.accessToken = '{{token}}';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11'
+  });
+  {{#each places}}
+  new mapboxgl.Marker().setLngLat([{{ location.coordinates }}]).addTo(map)
+  {{/each}}
+</script>
+{{/unless}}
