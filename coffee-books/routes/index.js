@@ -26,6 +26,7 @@ router.get("/", (req, res, next) => {
 router.get("/signup", isNotAuth, signupView)
 router.post("/signup", isNotAuth, signupProcess)
 router.get("/login", isNotAuth, loginView)
+
 // router.post('/login', passport.authenticate('local', {
 //   successRedirect: '/',
 //   failureRedirect: '/login'

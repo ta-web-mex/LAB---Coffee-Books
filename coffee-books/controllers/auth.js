@@ -40,10 +40,12 @@ exports.loginView = (req, res) => {
   res.render("auth/login", { errorMessage: req.flash("error") })
 }
 
-exports.loginProcess = passport.authenticate("local", {
-  successRedirect: "/",
-  failureRedirect: "/login",
-  failureFlash: true
+exports.loginProcess = (req, res) =>{
+  res.render("auth/loged", { errorMessage: req.flash("error") })
+  //Esta mierda rompe todo 
+  // // successRedirect: "/loged",
+  // // failureRedirect: "/login",
+  // failureFlash: true
 })
 
 exports.privatePage = (req, res) => {
