@@ -1,0 +1,14 @@
+<a href="/auth/google">Login with Google</a>
+</form>
+<a href="/logout">LOGOUT</a>
+
+<section>
+  {{#each places as |place|}}
+
+    <div>
+      <h5>{{name}}</h5>
+      <p>{{placeType}}</p>
+    </div>
+
+  {{/each}}
+</section>
